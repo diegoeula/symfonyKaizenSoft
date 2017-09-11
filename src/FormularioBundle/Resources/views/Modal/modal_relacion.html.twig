@@ -1,0 +1,41 @@
+{{ form_start(form) }}
+{{ form_errors(form) }}
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            {{ form_row(form.personaorigen)}}
+        </div>
+    </div>	
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            {{ form_row(form.personadestino)}}
+        </div>
+    </div>	
+</div>	
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            {{ form_row(form.tiporelacion)}}
+        </div>
+    </div>	
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            {{ form_row(form.tiporelacionversion)}}
+        </div>
+    </div>	
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            {{ form_row(form.observacion)}}
+        </div>
+    </div>	
+</div>
+<div style="display: none">
+    {{ form_rest(form) }}
+</div>
+{{ form_end(form) }}

@@ -1,0 +1,64 @@
+{% extends '::base.html.twig' %}
+
+{% block bootstrap %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{node}}/static/css/bootstrap-table/bootstrap-table.css">
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{node}}/static/js/bootstrap-table/bootstrap-table.js"></script>
+    <script type="text/javascript" src="{{node}}/static/js/bootstrap-table/locale/bootstrap-table-es-AR.js"></script>
+{% endblock %}
+{% block central %}
+    <section id="hecho"  >
+        <div class="container">
+            <div class="center wow fadeInDown">
+                <h1  style="color: #000;">Lista de usuarios</h1>
+            </div> 
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+
+                        <table data-toggle="table" id="table" data-sort-name="Id" data-sort-order="asc" data-striped="true" data-toolbar="#toolbar" data-search="true" data-show-refresh="true" data-pagination="true" data-page-list="[10, 25, 50, 100, ALL]">
+                            <thead>
+                                <tr>
+                                    <th data-field="Id" data-width="6%">Id</th>
+                                    <th data-field="Username" data-width="27%">Usuario</th>
+                                    <th data-field="Isactive" data-width="10%">Activo?</th>
+                                    <th data-field="Isadmin" data-width="10%">Administrador?</th>
+                                    <th data-field="Name" data-width="27%">Nombre</th>
+                                    <th data-field="Fiscalia" data-width="5%">Fiscalia</th>
+                                    <th data-field="Actions" data-width="15%">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for user in users %}
+                                    <tr>
+                                        <td><a href="{{ path('user_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
+                                        <td>{{ user.username }}</td>
+                                        <td>{% if user.isActive %}Si{% else %}No{% endif %}</td>
+                                        <td>{% if user.isAdmin %}Si{% else %}No{% endif %}</td>
+                                        <td>{{ user.name }}</td>
+                                        <td>{{ user.fiscalia }}</td>
+                                        <td>
+                                            <a class="btn btn-info" href="{{ path('user_show', { 'id': user.id }) }}">Mostrar</a>
+                                            <a class="btn btn-warning" href="{{ path('user_edit', { 'id': user.id }) }}">Editar</a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>	
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <a  class="btn btn-success" href="{{ path('user_new') }}">Agregar Usuario</a>
+                    </div>
+                </div>	
+            </div>
+        </div><!--/.container-->
+    </section><!--/#main-slider-->
+    
+{% endblock %}

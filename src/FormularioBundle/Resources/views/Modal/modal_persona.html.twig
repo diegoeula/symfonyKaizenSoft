@@ -1,0 +1,85 @@
+{{ form_start(form) }}
+{{ form_errors(form) }}
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            {{ form_row(form.tipopersona)}}
+        </div>
+    </div>	
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            {{ form_row(form.apellidoimputado)}}
+        </div>
+    </div>	
+    <div class="col-md-6">
+        <div class="form-group">
+            {{ form_row(form.nombreimputado)}}
+        </div>
+    </div>	
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            {{ form_row(form.tipoidentificacion)}}
+        </div>
+    </div>	
+    <div class="col-md-6">
+        <div class="form-group">
+            {{ form_row(form.numeroidentificacion)}}
+        </div>
+    </div>	
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            {{ form_row(form.paisidentificacion)}}
+        </div>
+    </div>	
+    <div class="col-md-6">
+        <div class="form-group">
+            {{ form_row(form.cuitimputado)}}
+        </div>
+    </div>	
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            {{ form_row(form.nacionalidad)}}
+        </div>
+    </div>	
+    <div class="col-md-6">
+        <div class="form-group">
+            {{ form_row(form.sexo)}}
+        </div>
+    </div>	
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            {{ form_row(form.domicilioimputado)}}
+        </div>
+    </div>	
+    <div class="col-md-6">
+        <div class="form-group">
+            {{ form_row(form.telefonoimputado)}}
+        </div>
+    </div>	
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            {{ form_row(form.ciudadresidencia)}}
+        </div>
+    </div>	
+    <div class="col-md-6">
+        <div class="form-group">
+            {{ form_row(form.paisresidencia)}}
+        </div>
+    </div>	
+</div>
+<div style="display: none">
+    {{ form_rest(form) }}
+</div>
+{{ form_end(form) }}

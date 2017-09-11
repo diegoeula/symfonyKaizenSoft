@@ -1,0 +1,246 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    <link href="{{asset('/static/css/leaflet/leaflet.label.css')}}" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{node}}/static/css/leaflet/leaflet.css" media="screen" />
+    <link rel="stylesheet" href="{{node}}/static/css/leaflet/Leaflet.NavBar.css"/>
+    <link rel="stylesheet" href="{{node}}/static/css/leaflet/fullscreen/Control.FullScreen.css"/>
+    <link rel="stylesheet" href="{{node}}/static/css/leaflet/zoom/L.Control.ZoomBox.css"/>
+    <link rel="stylesheet" href="{{node}}/static/css/leaflet/easyprint/easyPrint.css"/>
+
+    <link rel="stylesheet" href="{{node}}/static/css/leaflet/toolbar/leaflet.toolbar.css"/>
+    <link rel="stylesheet" href="{{node}}/static/css/leaflet/toolbar/leaflet.draw.css"/>
+    <link rel="stylesheet" href="{{node}}/static/css/leaflet/leaflet-panel-layers.css"/>
+    <link rel="stylesheet" href="{{node}}/static/css/Leaflet.draw/leaflet.draw.css" />
+    <link rel="stylesheet" href="{{node}}/static/css/sidebar-v2/leaflet-sidebar.css" />
+
+    <style>
+        .info {
+            padding: 6px 8px;
+            font: 14px/16px Arial, Helvetica, sans-serif;
+            background: white;
+            background: rgba(255,255,255,0.8);
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            border-radius: 5px;
+        }
+        .info h4 {
+            margin: 0 0 5px;
+            color: #777;
+        }
+
+        .legend {
+            text-align: left;
+            line-height: 18px;
+            color: #555;
+        }
+        .legend i {
+            width: 18px;
+            height: 18px;
+            float: left;
+            margin-right: 8px;
+            opacity: 0.7;
+        }
+    </style>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{node}}/static/js/bootstrap-table/bootstrap-table.js"></script>
+    <script type="text/javascript" src="{{node}}/static/js/bootstrap-table/locale/bootstrap-table-es-AR.js"></script>
+    {#    <script src="{{node}}/static/js/highcharts/highcharts.js"></script>#}
+    <script type="text/javascript" src="{{asset('/static/js/DAC/graficos.js')}}"></script>
+    <script type="text/javascript" src="{{asset('/js/highcharts/highcharts.js')}}"></script>
+    <script type="text/javascript" src="{{asset('/js/highcharts/modules/exporting.js')}}"></script>
+
+    <script type="text/javascript" src="{{node}}/static/js/leaflet/leaflet.js"></script>
+    <script type="text/javascript" src="{{node}}/static/js/moment.min.js"></script>
+    <script type="text/javascript" src="{{node}}/static/js/leaflet-dvf/leaflet-dvf.js"></script>
+    <script type="text/javascript" src="{{node}}/static/js/leaflet/leaflet.ajax.js"></script>
+    <script type="text/javascript" src="{{node}}/static/js/leaflet/leaflet.spin.js"></script>
+    <script type="text/javascript" src="{{node}}/static/js/leaflet/spin.js"></script>
+    <script type="text/javascript" src="{{node}}/static/js/Leaflet.draw/Leaflet.draw.js"></script>
+    <script type="text/javascript" src="{{node}}/static/js/Leaflet.draw/Leaflet.Draw.Event.js"></script>
+
+
+    <script type="text/javascript" src="{{node}}/static/js/Leaflet.draw/Toolbar.js"></script>
+    <script type="text/javascript" src="{{node}}/static/js/Leaflet.draw/Tooltip.js"></script>
+
+    <script type="text/javascript" src="{{node}}/static/js/Leaflet.draw/ext/GeometryUtil.js"></script>
+    <script type="text/javascript" src="{{node}}/static/js/Leaflet.draw/ext/LatLngUtil.js"></script>
+    <script type="text/javascript" src="{{node}}/static/js/Leaflet.draw/ext/LineUtil.Intersect.js"></script>
+    <script type="text/javascript" src="{{node}}/static/js/Leaflet.draw/ext/Polygon.Intersect.js"></script>
+    <script type="text/javascript" src="{{node}}/static/js/Leaflet.draw/ext/Polyline.Intersect.js"></script>
+    <script type="text/javascript" src="{{node}}/static/js/Leaflet.draw/ext/TouchEvents.js"></script>
+
+    <script type="text/javascript" src="{{node}}/static/js/Leaflet.draw/draw/DrawToolbar.js"></script>
+    <script type="text/javascript" src="{{node}}/static/js/Leaflet.draw/draw/handler/Draw.Feature.js"></script>
+    <script type="text/javascript" src="{{node}}/static/js/Leaflet.draw/draw/handler/Draw.SimpleShape.js"></script>
+    <script type="text/javascript" src="{{node}}/static/js/Leaflet.draw/draw/handler/Draw.Polyline.js"></script>
+    <script type="text/javascript" src="{{node}}/static/js/Leaflet.draw/draw/handler/Draw.Circle.js"></script>
+    <script type="text/javascript" src="{{node}}/static/js/Leaflet.draw/draw/handler/Draw.Marker.js"></script>
+    <script type="text/javascript" src="{{node}}/static/js/Leaflet.draw/draw/handler/Draw.Polygon.js"></script>
+    <script type="text/javascript" src="{{node}}/static/js/Leaflet.draw/draw/handler/Draw.Rectangle.js"></script>
+
+
+    <script type="text/javascript" src="{{node}}/static/js/Leaflet.draw/edit/EditToolbar.js"></script>
+    <script type="text/javascript" src="{{node}}/static/js/Leaflet.draw/edit/handler/EditToolbar.Edit.js"></script>
+    <script type="text/javascript" src="{{node}}/static/js/Leaflet.draw/edit/handler/EditToolbar.Delete.js"></script>
+
+    <script type="text/javascript" src="{{node}}/static/js/Leaflet.draw/Control.Draw.js"></script>
+
+    <script type="text/javascript" src="{{node}}/static/js/Leaflet.draw/edit/handler/Edit.Poly.js"></script>
+    <script type="text/javascript" src="{{node}}/static/js/Leaflet.draw/edit/handler/Edit.SimpleShape.js"></script>
+    <script type="text/javascript" src="{{node}}/static/js/sidebar-v2/leaflet-sidebar.js"></script>
+    <script type="text/javascript" src="{{node}}/static/js/leaflet/redirect.js"></script>
+    <script type="text/javascript" src="{{asset('/static/js/leaflet/leaflet.label.js')}}"></script>
+
+    <script type="text/javascript">
+        var datos
+                = {{ data | json_encode | raw }};
+                cargarfiltros(datos);
+        $.ajax({
+            type: 'POST',
+            url: '{{node}}/droga/buscar',
+            crossDomain: true,
+            data: JSON.stringify(datos),
+            dataType: 'json',
+            contentType: "application/json",
+        })
+                .done(function (rawData) {
+                    for (i = 0; i < rawData.length; i++) {
+                        if (rawData[i].tipo == '1') {
+                            $('#graficos').append("<div class=\"content-panel col-md-6\"> \n\
+                    <div class=\"panel-body\">\n\
+                        <div id=\"container-".concat(i).concat("\" style=\"height: 335px; margin: auto;\" ></div>\n\
+                    </div>\n\
+                </div>"));
+                            multiline(rawData[i].datos, rawData[i].titulo, "", "container-".concat(i), null);
+                        } else {
+                            if (rawData[i].tipo == '2') {
+                                $('#graficos').append("<div class=\"content-panel col-md-6\"> \n\
+                    <div class=\"panel-body\">\n\
+                        <div id=\"container-".concat(i).concat("\" style=\"height: 335px; margin: auto;\" ></div>\n\
+                    </div>\n\
+                </div>"));
+                                pie(rawData[i].datos, rawData[i].titulo, "", "container-".concat(i), "T");
+                            } else {
+                                if (rawData[i].tipo == '3') {
+                                    $('#graficos').append("<div class=\"content-panel col-md-12\"> \n\
+                    <div>\n\
+                        <div class=\"contenedorTitulo\">\n\
+                            <h5>".concat(rawData[i].titulo).concat("</h5><i class=\"fa fa-pie-chart pull-right \" aria-hidden=\"true\"></i>\n\
+                        </div>\n\
+                    </div>\n\
+                    <div class=\"panel-body\">\n\
+                        <div id=\"map-").concat(i).concat("\" style=\"height: 600px; margin: auto;\" ></div>\n\
+                    </div>\n\
+                </div>"));
+
+                                    var basemap2 = L.tileLayer.wms("{{map_cache}}", {
+                                        layers: 'mpf',
+                                        format: 'image/png'});
+                                    var map = new L.Map('map-'.concat(i), {
+                                        fullscreenControl: true,
+                                        fullscreenControlOptions: {
+                                            position: 'bottomleft'
+                                        },
+                                        center: new L.LatLng(-32.949907, -60.673366),
+                                        zoom: 10,
+                                        layers: [basemap2]
+                                    });
+                                    function onEachFeatureP(feature, layer) {
+                                        var style = feature.style;
+                                        if (style) {
+                                            if (layer instanceof L.Marker) {
+                                                if (style.icon) {
+                                                    layer.setIcon(L.icon(style.icon));
+                                                }
+                                                layer.bindLabel((feature.properties['fiscalianro'] !== null ? String('<div style="color: #000000; font-size: 8pt; font-family: \'MS Shell Dlg 2\', sans-serif;">' + feature.properties['fiscalianro']) + '</div>' : ''), {noHide: true, offset: [-12, -14]});//.openTooltip();
+
+                                            } else {
+                                                layer.setStyle(style);
+                                            }
+
+                                        }
+                                    }
+                                    var puntos = new L.GeoJSON(rawData[i].datos, {onEachFeature: onEachFeatureP});
+                                    L.layerGroup()
+                                            .addLayer(puntos)
+                                            .addTo(map);
+                                    var legend = L.control({position: 'bottomright'});
+                                    var leyendalabel = "";
+                                    if (rawData[i].leyenda[164] == 1)
+                                    {
+                                        leyendalabel = leyendalabel + '<br><img src="http://192.168.57.76:3000/imagen/fiscalia?color=ff0000" style=" margin-top: -16px; width: 25px; height: 22px;">164';
+                                    }
+                                    if (rawData[i].leyenda[165] == 1)
+                                    {
+                                        leyendalabel = leyendalabel + '<br><img src="http://192.168.57.76:3000/imagen/fiscalia?color=0066ff" style=" margin-top: -16px; width: 25px; height: 22px;">165';
+                                    }
+                                    if (rawData[i].leyenda[197] == 1) {
+                                        leyendalabel = leyendalabel + '<br><img src="http://192.168.57.76:3000/imagen/fiscalia?color=ff0000" style=" margin-top: -16px; width: 25px; height: 22px;">197';
+                                    }
+                                    if (rawData[i].leyenda[199] == 1) {
+                                        leyendalabel = leyendalabel + '<br><img src="http://192.168.57.76:3000/imagen/fiscalia?color=0066ff" style=" margin-top: -16px; width: 25px; height: 22px;">199';
+                                    }
+                                    if (rawData[i].leyenda[201] == 1) {
+                                        leyendalabel = leyendalabel + '<br><img src="http://192.168.57.76:3000/imagen/fiscalia?color=33cc33" style=" margin-top: -16px; width: 25px; height: 22px;">201';
+                                    }
+                                    if (rawData[i].leyenda[210] == 1) {
+                                        leyendalabel = leyendalabel + '<br><img src="http://192.168.57.76:3000/imagen/fiscalia?color=ff0000" style=" margin-top: -16px; width: 25px; height: 22px;">210';
+                                    }
+                                    if (rawData[i].leyenda[212] == 1) {
+                                        leyendalabel = leyendalabel + '<br><img src="http://192.168.57.76:3000/imagen/fiscalia?color=0066ff" style=" margin-top: -16px; width: 25px; height: 22px;">212';
+                                    }
+                                    if (rawData[i].leyenda[214] == 1) {
+                                        leyendalabel = leyendalabel + '<br><img src="http://192.168.57.76:3000/imagen/fiscalia?color=33cc33" style=" margin-top: -16px; width: 25px; height: 22px;">214';
+                                    }
+                                    if (rawData[i].leyenda[235] == 1) {
+                                        leyendalabel = leyendalabel + '<br><img src="http://192.168.57.76:3000/imagen/fiscalia?color=ff0000" style=" margin-top: -16px; width: 25px; height: 22px;">235';
+                                    }
+                                    if (rawData[i].leyenda[244] == 1) {
+                                        leyendalabel = leyendalabel + '<br><img src="http://192.168.57.76:3000/imagen/fiscalia?color=33cc33" style=" margin-top: -16px; width: 25px; height: 22px;">244';
+                                    }
+                                    legend.onAdd = function (map) {
+                                        var div = L.DomUtil.create('div', 'info legend');
+                                        div.innerHTML = '<h3>Referencias</h3>' + leyendalabel;
+                                        return div;
+                                    };
+                                    legend.addTo(map);
+                                } else {
+                                    if (rawData[i].tipo == '4') {
+                                        $('#graficos').append("<div class=\"content-panel col-md-6\"> \n\
+                    <div class=\"panel-body\">\n\
+                        <div id=\"container-".concat(i).concat("\" style=\"height: 335px; margin: auto;\" ></div>\n\
+                    </div>\n\
+                </div>"));
+                                        multiline(rawData[i].datos, rawData[i].titulo, "", "container-".concat(i), null);
+                                    }
+
+                                }
+                            }
+
+                        }
+                    }
+                });
+    </script>
+{% endblock %}
+{% block central %}
+    <section id="hecho"  >
+        <div class="container">
+            <div class="center wow fadeInDown">
+                <h1  style="color: #000;">Gráficos</h1>
+                <h3  style="color: #000;">Filtros</h3>
+                <div id="filtros">
+
+                </div>
+            </div>
+            <div id="graficos">
+
+            </div>
+
+        </div><!--/.container-->
+    </section><!--/#main-slider-->
+{% endblock %}

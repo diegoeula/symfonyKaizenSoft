@@ -1,0 +1,437 @@
+{% extends '::base.html.twig' %}
+{% block title %}DGAC | Formulario de Carga{% endblock %}
+{% block header %}
+    <div class="header-cont" >
+        <header id="header">
+            <nav class="navbar navbar-inverse" style="background-color: #01589b;" role="banner">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#"><img src="{{node}}/static/images/mpf-logo-blanco.png" height="65px" alt="logo"></a>
+                    </div>
+
+                    <div class="collapse navbar-collapse navbar-right">
+                        <ul class="nav navbar-nav">
+                        </ul>
+                    </div>
+                </div><!--/.container-->
+            </nav><!--/nav-->
+
+        </header><!--/header-->
+    </div>
+{% endblock %}  
+{% block stylesheets %}
+    {{parent()}}
+
+    <link rel="stylesheet" href="{{asset('css/jquery.datetimepicker.min.css')}}"/>
+    <link rel="stylesheet" href="{{asset('css/jasny-bootstrap.min.css')}}"/>
+    <link href="{{asset('css/bootstrap-chosen.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{node}}/static/css/leaflet/leaflet.css" />
+    <link rel="stylesheet" href="{{node}}/static/css/DAC/markers.css"/>
+    <link rel="stylesheet" href="{{asset('js/bootstrap-table/bootstrap-table.css')}}">
+    <style type="text/css">
+        .header-cont {
+            width:100%;
+            position:fixed;
+            top:0px;
+            z-index: 99;
+
+        }
+        .body-cont {
+            margin: auto;
+        }
+        .ui-autocomplete-input, .ui-menu, .ui-menu-item { 
+            border: 1px;
+            border-color: #000;
+            background-color: #ffffff;
+            z-index: 2006; 
+        }
+    </style>
+    <link rel="stylesheet" href="{{asset('css/jquery-ui.min.css')}}"/>
+{% endblock %}
+{% block central %}  
+    {{ form_start(form) }}
+    {{ form_errors(form) }}
+
+    <section id="causa" style="margin-top:90px">
+        <div class="container">
+            <div style="text-align: center;font-size: 36px;padding-bottom: 0px!important;">
+                <h1 style="color:#000;">Hecho</h1>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_row(form.autoridadcontrolprevencion)}}
+                    </div>
+                </div>	
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_row(form.tipoprocedimiento)}}
+                    </div>
+                </div>	
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_row(form.lugar)}}
+                    </div>
+                </div>	
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_row(form.direccion)}}
+                    </div>
+                </div>	
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_row(form.direccioncruce)}}
+                    </div>
+                </div>	
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_row(form.fechaingresopais)}}
+                    </div>
+                </div>	
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_row(form.paisprocedencia)}}
+                    </div>
+                </div>	
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_row(form.fechaegresopais)}}
+                    </div>
+                </div>	
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_row(form.paisdestino)}}
+                    </div>
+                </div>	
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_row(form.modotraslado)}}
+                    </div>
+                </div>	
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_row(form.tipovehiculoparticular)}}
+                    </div>
+                </div>	
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_row(form.marca)}}
+                    </div>
+                </div>	
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_row(form.modelo)}}
+                    </div>
+                </div>	
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_row(form.patente)}}
+                    </div>
+                </div>	
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_row(form.titular)}}
+                    </div>
+                </div>	
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_row(form.dnititular)}}
+                    </div>
+                </div>	
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_row(form.cuittitular)}}
+                    </div>
+                </div>	
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_row(form.tipotransporte)}}
+                    </div>
+                </div>	
+                
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_row(form.ciudadorigen)}}
+                    </div>
+                </div>	
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_row(form.ciudaddestino)}}
+                    </div>
+                </div>	
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_row(form.empresatransporteaereo)}}
+                    </div>
+                </div>	
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_row(form.numerovuelo)}}
+                    </div>
+                </div>	
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_row(form.empresatransporteterrestre)}}
+                    </div>
+                </div>	
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_row(form.patentetransporteterrestre)}}
+                    </div>
+                </div>	
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_row(form.tipovalortransportado)}}
+                    </div>
+                </div>	
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_row(form.moneda)}}
+                    </div>
+                </div>	
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_row(form.cantidaddinero)}}
+                    </div>
+                </div>	
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_row(form.cantidadtotaldinero)}}
+                    </div>
+                </div>	
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_row(form.modalidadtraslado)}}
+                    </div>
+                </div>	
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_row(form.ocultamiento)}}
+                    </div>
+                </div>	
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_row(form.declaracionanteaduana)}}
+                    </div>
+                </div>	
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_row(form.montodeclarado)}}
+                    </div>
+                </div>	
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_row(form.mercaderiasprohibidascontrabando)}}
+                    </div>
+                </div>	
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_row(form.tipomercaderia)}}
+                    </div>
+                </div>	
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        {{ form_row(form.detallemercaderia)}}
+                    </div>
+                </div>	
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_row(form.tenenciadocumentacionfalsa)}}
+                    </div>
+                </div>	
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_row(form.presentaciondocumentacionfalsa)}}
+                    </div>
+                </div>	
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_row(form.tipodocumentacionfalsa)}}
+                    </div>
+                </div>	
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        {{ form_row(form.detalledocumentacion)}}
+                    </div>
+                </div>	
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_row(form.movimientomigratoriosultimos5)}}
+                    </div>
+                </div>	
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_row(form.direccionmovimientomigratorios)}}
+                    </div>
+                </div>	
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_row(form.paisorigen)}}
+                    </div>
+                </div>	
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_row(form.paisddestino)}}
+                    </div>
+                </div>	
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_row(form.fechaentradaargentina)}}
+                    </div>
+                </div>	
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_row(form.fechaegresoargentina)}}
+                    </div>
+                </div>	
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        {{ form_row(form.observaciones)}}
+                    </div>
+                </div>	
+            </div>
+        </div>
+    </section>
+    <section id="salvar" >
+        <div class="container fadeInDown">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group" style="text-align: center;" >
+                        {{ form_widget(form.save_volver) }}
+                    </div>
+                </div>	
+                <div class="col-md-4">
+                    <div class="form-group" style="text-align: center;{% if view==1 %}display:none;{% endif %}" >
+                        {{ form_widget(form.save_local) }}
+                    </div>
+                </div>	
+                <div class="col-md-4">
+                    <div class="form-group" style="text-align: center;{% if view==1 %}display:none;{% endif %}" >
+                        {{ form_widget(form.save) }}
+                    </div>
+                </div>	
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <br>
+                    </div>
+                </div>	
+            </div>	
+            <div style="display: none">
+                {{ form_rest(form) }}
+            </div>
+        </div><!--/.container-->
+    </section><!--/#main-slider-->
+    {{ form_end(form) }}
+{% endblock %}
+{% block modales %}  
+    {{ include('FormularioBundle:Default:modales_hecho.html.twig') }}
+{% endblock %}
+{% block javascripts %}
+    {{parent()}}
+    <script type="text/javascript" src="{{node}}/static/js/jquery/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="{{node}}/static/js/leaflet/leaflet.js"></script> <!-- this is the javascript file that does the magic-->
+    <script type="text/javascript" src="{{node}}/static/js/DAC/funcionesMapa.js"></script>
+    <script type="text/javascript" src="{{node}}/static/js/DAC/tags.js"></script>
+    <script type="text/javascript" src="{{node}}/static/js/DAC/mapas.js"></script>
+    <script type="text/javascript" src="{{asset('js/bootstrap-table/bootstrap-table.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/bootstrap-table/locale/bootstrap-table-es-AR.js')}}"></script>
+    <script type="text/javascript" src="{{node}}/static/js/DAC/gral.js"></script>
+    <script type="text/javascript" src="{{asset('js/modales_santiago.js')}}"></script>
+    <script type="text/javascript"src="{{asset('js/jquery.datetimepicker.full.min.js')}}"></script>
+    <script type="text/javascript"src="{{asset('js/jquery.mask.min.js')}}"></script>
+    <script type="text/javascript"src="{{asset('js/jasny-bootstrap.min.js')}}"></script>
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+    <script src="{{asset('js/chosen.jquery.js')}}"></script>
+    <script type="text/javascript" >
+        var origen = "{{ form.vars.name }}";
+        var marker;
+        $.datetimepicker.setLocale('es');
+        $('.fecha').datetimepicker({defaultTime: '00:00', format: 'd/m/Y H:i'});
+        $('.money').mask('000.000.000.000.000,00', {reverse: true});
+        $(function () {
+            $('.chosen-select').chosen({placeholder_text_multiple: "Por favor seleccione una opción", no_results_text: "No hay resultados", width: '100%', placeholder_text_single: "Por favor seleccione una opción"});
+            $('.chosen-select-deselect').chosen({allow_single_deselect: true});
+            var inputs = $(':input').keypress(function (e) {
+                if (e.which == 13) {
+                    e.preventDefault();
+                    var nextInput = inputs.get(inputs.index(this) + 1);
+                    if (nextInput) {
+                        nextInput.focus();
+                    }
+                }
+            });
+        });
+        $(document).ready(function () {
+
+
+            $('#hecho_save_volver').click(function () {
+                if (!confirm('¿Está seguro de volver sin guardar?'))
+                    return false;
+                return true;
+            });
+
+        });
+        {% if view==1 %}
+            deshabilitarBotones();
+        {% endif %}
+    </script>
+{% endblock %}

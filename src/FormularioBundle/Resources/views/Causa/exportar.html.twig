@@ -1,0 +1,61 @@
+{% extends '::base.html.twig' %}
+
+{% block bootstrap %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{node}}/static/css/bootstrap-table/bootstrap-table.css">
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{node}}/static/js/bootstrap-table/bootstrap-table.js"></script>
+    <script type="text/javascript" src="{{node}}/static/js/bootstrap-table/locale/bootstrap-table-es-AR.js"></script>
+{% endblock %}
+{% block central %}
+    <section id="hecho"  >
+        <div class="container">
+            <div class="center wow fadeInDown">
+                <h1  style="color: #000;">Exportar Datos</h1>
+            </div> 
+{#            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <a href="{{ path('exportarexcelcausa') }}" class="btn btn-info">Exportar Causa</a>
+                    </div>
+                </div>	
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <a href="{{ path('exportarexcelcausahecho') }}" class="btn btn-info">Exportar Causa y Hechos</a>
+                    </div>
+                </div>	
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <a href="{{ path('exportarexcelcausahecholugar') }}" class="btn btn-info">Exportar Causa / Hechos y Lugar</a>
+                    </div>
+                </div>	
+            </div>	
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <a href="{{ path('exportarexcelcausahechopersona') }}" class="btn btn-info">Exportar Causa / Hechos y Persona</a>
+                    </div>
+                </div>	
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <a href="{{ path('exportarexcelcausahechodroga') }}" class="btn btn-info">Exportar Causa / Hechos y Droga</a>
+                    </div>
+                </div>	
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <a href="{{ path('exportarexcelcausahechoelementos') }}" class="btn btn-info">Exportar Causa / Hechos y Elementos</a>
+                    </div>
+                </div>	
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <a href="{{ path('exportarexcelcausahechoparadas') }}" class="btn btn-info">Exportar Causa / Hechos y Paradas intermedias</a>
+                    </div>
+                </div>	
+            </div>#}
+        </div><!--/.container-->
+    </section><!--/#main-slider-->
+{% endblock %}

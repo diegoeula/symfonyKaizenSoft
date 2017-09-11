@@ -1,0 +1,451 @@
+{% extends '::base.html.twig' %}
+{% block title %}DGAC | Formulario de Carga{% endblock %}
+{% block header %}
+    <div class="header-cont" >
+        <header id="header">
+            <nav class="navbar navbar-inverse" style="background-color: #01589b;" role="banner">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#"><img src="{{node}}/static/images/mpf-logo-blanco.png" height="65px" alt="logo"></a>
+                    </div>
+
+                    <div class="collapse navbar-collapse navbar-right">
+                        <ul class="nav navbar-nav">
+                        </ul>
+                    </div>
+                </div><!--/.container-->
+            </nav><!--/nav-->
+
+        </header><!--/header-->
+    </div>
+{% endblock %}  
+{% block stylesheets %}
+    {{parent()}}
+
+    <link rel="stylesheet" href="{{asset('css/jquery.datetimepicker.min.css')}}"/>
+    <link rel="stylesheet" href="{{asset('css/jasny-bootstrap.min.css')}}"/>
+    <link href="{{asset('css/bootstrap-chosen.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{node}}/static/css/vis/vis.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        .header-cont {
+            width:100%;
+            position:fixed;
+            top:0px;
+            z-index: 99;
+
+        }
+        .body-cont {
+            margin: auto;
+        }
+        .ui-autocomplete-input, .ui-menu, .ui-menu-item { 
+            border: 1px;
+            border-color: #000;
+            background-color: #ffffff;
+            z-index: 2006; 
+        }
+    </style>
+    <link rel="stylesheet" href="{{asset('css/jquery-ui.min.css')}}"/>
+{% endblock %}
+{% block central %}  
+    <div class="container" style="margin-top:60px">
+        <div class="center wow fadeInDown">
+        </div>
+    </div>
+    {{ form_start(form) }}
+    {{ form_errors(form) }}
+    <section id="Causa" >
+        <div class="container">
+            <div class="center wow fadeInDown">
+                <h2>
+                    Causa  
+                </h2>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_row(form.provincia)}}
+                    </div>
+                </div>	
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_row(form.ciudad)}}
+                    </div>
+                </div>	
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_row(form.distritofiscal)}}
+                    </div>
+                </div>	
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_row(form.juzgado)}}
+                    </div>
+                </div>	
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_row(form.fiscalia)}}
+                    </div>
+                </div>	
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_row(form.nrocausa)}}
+                    </div>
+                </div>	
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        {{ form_row(form.caratula)}}
+                    </div>
+                </div>	
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_row(form.fechainicio)}}
+                    </div>
+                </div>	
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_row(form.estadoprocesal)}}
+                    </div>
+                </div>	
+            </div>
+        </div><!--/.container-->
+    </section><!--/#main-slider-->
+    <section id="hecho" {% if id is not defined %}style="display:none;"{% endif %} >
+        <div class="container">
+            <div style="text-align: center;font-size: 20px;">
+                <h2>Hechos que componen la causa</h2>
+            </div>
+        </div>
+        <div class="container fadeInDown">
+            <div class="center wow"  style="padding-bottom: 0px!important;">
+                <table data-toggle="table" id="table" data-sort-name="Id" data-sort-order="asc" data-striped="true" data-toolbar="#toolbar"  data-pagination="true" data-page-list="[10, 25, 50, 100, ALL]">
+                    <thead>
+                        <tr>
+                            <th data-field="Id">Id: </th>
+                                {#                            <th data-field="SumarioAnio">Descripción del hecho</th>#}
+                            <th data-field="Actions">Acciones: </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for hecho in hechos %}
+                            <tr>
+                                <td>{{ hecho.id }}</td>
+                                {#                                <td>{{ hecho.descripcion }}</td>#}
+                                <td >
+                                    <a href="{{ path('agregarhecho' , { 'causa':  id,'hecho':hecho.id}) }}" class="btn btn-warning" {% if view==1 %}style="display:none;" {% endif %}>Editar</a>
+                                    <a href="{{ path('verhecho' , { 'causa':  id,'hecho':hecho.id}) }}" class="btn btn-info">Ver</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            {% if id is  defined %}
+                                <a href="{{ path('agregarhecho' , { 'causa':  id }  ) }}" class="btn btn-primary"{% if view==1 %}style="display:none;" {% endif %}>Agregar Hecho</a>
+                            {% endif %}
+                        </div>
+                    </div>	
+                </div>
+
+            </div>
+        </div>	
+    </section><!--/#main-slider-->
+    <section id="personas" {% if id is not defined %}style="display:none;"{% endif %} >
+        <div class="container">
+            <div style="text-align: center;font-size: 30px;">
+                <h2>Personas físicas y/o jurídicas</h2>
+            </div>
+        </div>
+        <div class="container fadeInDown" style="padding-bottom: 0px!important;">
+            <table id="personaTable" data-toggle="table"  data-unique-id="id" data-sort-name="id">
+                <thead>
+                    <tr>
+                        <th data-field="id">Id</th>
+                        <th data-field="nombre">Nombre</th>
+                        <th data-field="operate" data-formatter="operateFormatterPersona" data-events="operateEvents">Acciones</th>
+                    </tr>
+                </thead>
+            </table>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <a href="#" data-toggle="modal" data-target="#new_persona" data-whatever="@mdo" class="btn btn-primary"{% if view==1 %}style="display:none;" {% endif %}>+ Agregar Persona</a>
+                    </div>
+                </div>	
+            </div>
+        </div><!--/.container-->
+
+
+    </section><!--/#recent-works--> 
+    <section id="Causa2" >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        {{ form_row(form.investigacionpersonalpatrimonial)}}
+                    </div>
+                </div>	
+            </div>
+        </div>
+    </section>
+    <section id="relaciones" {% if id is not defined %}style="display:none;"{% endif %} >
+        <div class="container">
+            <div style="text-align: center;font-size: 30px;">
+                <h2>Relaciones</h2>
+            </div>
+        </div>
+        <div class="container fadeInDown" style="padding-bottom: 0px!important;">
+            <table id="relacionTable" data-toggle="table"  data-unique-id="id" data-sort-name="id">
+                <thead>
+                    <tr>
+                        <th data-field="id">Id</th>
+                        <th data-field="TipoRelacion">Tipo Relación</th>
+                        <th data-field="operate" data-formatter="operateFormatterRelacion" data-events="operateEvents">Acciones</th>
+                    </tr>
+                </thead>
+            </table>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <a href="#" data-toggle="modal" data-target="#new_relacion" data-whatever="@mdo" class="btn btn-primary"{% if view==1 %}style="display:none;" {% endif %}>+ Agregar Relación</a>
+                    </div>
+                </div>	
+            </div>
+        </div><!--/.container-->
+
+
+    </section><!--/#recent-works--> 
+
+
+    <section id="Causa3" >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        {{ form_row(form.otracausa)}}
+                    </div>
+                </div>	
+                <div class="col-md-9">
+                    <div class="form-group">
+                        {{ form_row(form.otrascausas)}}
+                    </div>
+                </div>	
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        {{ form_row(form.procedenciageograficaimputado)}}
+                    </div>
+                </div>	
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        {{ form_row(form.procedenciageograficacausa)}}
+                    </div>
+                </div>	
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        {{ form_row(form.origenproptenenciadineroimputado)}}
+                    </div>
+                </div>	
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        {{ form_row(form.origenproptenenciadinerocausa)}}
+                    </div>
+                </div>	
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        {{ form_row(form.destinogeograficoimputado)}}
+                    </div>
+                </div>	
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        {{ form_row(form.destinogeograficocausa)}}
+                    </div>
+                </div>	
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        {{ form_row(form.destinodineroimputado)}}
+                    </div>
+                </div>	
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        {{ form_row(form.destinodinerocausa)}}
+                    </div>
+                </div>	
+            </div>
+        </div><!--/.container-->
+    </section><!--/#main-slider-->
+    <section id="graficoRelaciones" >
+        <div class="container fadeInDown">
+            <div class="center wow">
+                <h2>Grafico de Relaciones</h2>
+                <div id="mynetwork" style="height:500px">
+                    <div class="vis-network" tabindex="900" style="position: relative; overflow: hidden; touch-action: pan-y; -webkit-user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); width: 100%; height: 100%;">
+                        <canvas style="position: relative; touch-action: none; -webkit-user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); width: 100%; height: 100%;" width="1247" height="1200">
+                        </canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="salvar" >
+        <div class="container fadeInDown">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group" style="text-align: center;" >
+                        {{ form_widget(form.save_volver) }}
+                    </div>
+                </div>	
+                <div class="col-md-3">
+                    <div class="form-group" style="text-align: center;" >
+                        {% if maschico is defined %}
+                            {% if maschico is not empty %}
+                                {% if view==0 %}
+                                    <a href="{{ path('causaupdate' , { 'id': maschico }) }}" class="btn btn-default">Causa Anterior</a>
+                                {% else %}
+                                    <a hre="{{ path('causaview', { 'id': maschico }) }}" class="btn btn-default">Causa Anterior</a>
+                                {% endif %}
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                </div>	
+                <div class="col-md-3">
+                    <div class="form-group" style="text-align: center;" >
+                        {% if masgrande is defined %}
+                            {% if masgrande is not empty %}
+                                {% if view==0 %}
+                                    <a href="{{ path('causaupdate' , { 'id': masgrande }) }}" class="btn btn-default">Causa Siguiente</a>
+                                {% else %}
+                                    <a hre="{{ path('causaview', { 'id': masgrande }) }}" class="btn btn-default">Causa Siguiente</a>
+                                {% endif %}
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                </div>	
+
+                <div class="col-md-3">
+                    <div class="form-group" style="text-align: center;{% if view==1 %}display:none;{% endif %}" >
+                        {{ form_widget(form.save) }}
+                    </div>
+                </div>	
+            </div>	
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <br>
+                    </div>
+                </div>	
+            </div>	
+            <div style="display: none">
+                {{ form_rest(form) }}
+            </div>
+
+        </div><!--/.container-->
+    </section><!--/#main-slider-->
+
+    {{ form_rest(form) }}
+
+    {{ form_end(form) }}
+{% endblock %}
+{% block modales %}  
+    {{ include('FormularioBundle:Default:modales_causa.html.twig') }}
+{% endblock %}
+
+
+{% block javascripts %}
+    {{parent()}}
+    <script type="text/javascript" src="{{node}}/static/js/jquery/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="{{node}}/static/js/bootstrap-table/bootstrap-table.js"></script>
+    <script type="text/javascript" src="{{node}}/static/js/bootstrap-table/locale/bootstrap-table-es-AR.js"></script>
+    <script type="text/javascript" src="{{node}}/static/js/DAC/gral.js"></script>
+    <script type="text/javascript" src="{{asset('js/modales.js')}}"></script>
+    <script type="text/javascript" src="{{node}}/static/js/vis/vis.min.js"></script>
+    <script type="text/javascript"src="{{asset('js/jquery.datetimepicker.full.min.js')}}"></script>
+    <script type="text/javascript"src="{{asset('js/jasny-bootstrap.min.js')}}"></script>
+    <script src="{{asset('js/chosen.jquery.js')}}"></script>
+    <script type="text/javascript" >
+        var origen = "{{ form.vars.name }}";
+        var datos_red = {'nodes': [], 'edges': []};
+        $.datetimepicker.setLocale('es');
+        $('.fecha').datetimepicker({defaultTime: '00:00', format: 'd/m/Y H:i'});
+        $(function () {
+            $('.chosen-select').chosen({placeholder_text_multiple: "Por favor seleccione una opción", no_results_text: "No hay resultados", width: '100%', placeholder_text_single: "Por favor seleccione una opción"});
+            $('.chosen-select-deselect').chosen({allow_single_deselect: true});
+            var inputs = $(':input').keypress(function (e) {
+                if (e.which == 13) {
+                    e.preventDefault();
+                    var nextInput = inputs.get(inputs.index(this) + 1);
+                    if (nextInput) {
+                        nextInput.focus();
+                    }
+                }
+            });
+            $('#causa_save_volver').click(function () {
+                // escape here if the confirm is false;
+                if (!confirm('¿Está seguro de volver sin guardar?'))
+                    return false;
+                return true;
+            });
+
+        });
+        $(document).ready(function () {
+            $("input:radio[name*='acumulada']").change();
+            var options = {
+                layout: {randomSeed: 7},
+                interaction: {
+                    navigationButtons: true,
+                    keyboard: true
+                },
+                "edges": {
+                    "smooth": {
+                        "type": "continuous",
+                        "forceDirection": "none",
+                        "roundness": 0.7
+                    }
+                },
+                "physics": {
+                    "barnesHut": {
+                        "gravitationalConstant": -29850,
+                        "centralGravity": 1.4,
+                        "springLength": 140
+                    },
+                    "minVelocity": 0.75
+                }
+            };
+            network = new vis.Network(document.getElementById('mynetwork'), datos_red, options);
+        });
+
+        {% if view==1 %}
+            deshabilitarBotones();
+        {% endif %}
+    </script>
+{% endblock %}

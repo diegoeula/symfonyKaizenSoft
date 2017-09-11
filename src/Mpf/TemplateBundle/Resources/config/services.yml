@@ -1,0 +1,8 @@
+parameters:
+    fiscalia.distrito.class: Mpf\TemplateBundle\Controller\DistritoController
+    
+ 
+services:
+    fiscalia.distrito:
+        class: "%fiscalia.distrito.class%"
+        arguments: [ "@doctrine.orm.entity_manager" ]

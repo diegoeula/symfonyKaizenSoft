@@ -1,0 +1,10 @@
+formulario_capa:
+    resource: "@FormularioBundle/Controller/"
+    type:     annotation
+    prefix:   /
+usuarios:
+    resource: "@MpfTemplateBundle/Controller/"
+    type:     annotation
+    prefix:   /    
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"

@@ -1,0 +1,76 @@
+{% extends '::base.html.twig' %}
+
+{% block bootstrap %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{node}}/static/css/bootstrap-table/bootstrap-table.css">
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{node}}/static/js/bootstrap-table/bootstrap-table.js"></script>
+    <script type="text/javascript" src="{{node}}/static/js/bootstrap-table/locale/bootstrap-table-es-AR.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#borrar').click(function () {
+                if (!confirm('¿Está seguro que desea eliminar esta causa?'))
+                    return false;
+                return true;
+            });
+
+        });
+    </script>
+{% endblock %}
+{% block central %}
+    <section id="hecho"  >
+        <div class="container">
+            <div class="center wow fadeInDown">
+                <h1  style="color: #000;">Formulario de carga de causas</h1>
+            </div> 
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+
+                        <table data-toggle="table" id="table" data-sort-name="Id" data-sort-order="asc" data-striped="true" data-toolbar="#toolbar" data-search="true" data-show-refresh="true" data-pagination="true" data-page-list="[10, 25, 50, 100, ALL]">
+                            <thead>
+                                <tr>
+                                    <th data-field="Id" data-width="3%">Id: </th>
+                                    {#<th data-field="SumarioAnio" data-width="10%">Expediente Fiscalnet</th>
+                                    <th data-field="Fiscalia" data-width="36%">Fiscalia</th>
+                                    <th data-field="Caratula" data-width="30%">Descripción del caso</th>#}
+                                    <th data-field="Actions" data-width="21%">Acciones: </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for causa in causas %}
+                                    <tr>
+                                        <td>{{ causa.id }}</td>
+{#                                        <td>{{ causa.fiscalnet }}</td>#}
+{#                                        <td>{{ causa.fiscalia.descripcion }}</td>#}
+{#                                        <td>{{ causa.descripcioncaso }}</td>#}
+                                        {#<td>{{ causa.usuariomodificacion }}</td>
+                                        <td>{{ causa.fechacarga|date('d/m/Y') }}</td>#}
+                                        <td>
+                                            <a href="{{ path('causaupdate', { 'id': causa.id }) }}" class="btn btn-warning">Editar</a>
+                                            <a href="{{ path('causaview', { 'id': causa.id }) }}" class="btn btn-info">Ver</a>
+                                            {% if fiscalia==1 %}
+                                                <a id="borrar" href="{{ path('causadelete', { 'id': causa.id }) }}" class="btn btn-danger">Eliminar</a>
+                                            {% endif %}
+
+
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>	
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <a href="{{ path('causa') }}" class="btn btn-success">Agregar Causa</a>
+                    </div>
+                </div>	
+            </div>
+        </div><!--/.container-->
+    </section><!--/#main-slider-->
+{% endblock %}

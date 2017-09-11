@@ -1,0 +1,13 @@
+services:
+    saml.security.authentication.provider:
+        class: Mpf\SamlBundle\Security\Authentication\Provider\SamlProvider
+        arguments:
+            - "" # User Provider
+            - "%kernel.cache_dir%/security/nonces"
+        public: false
+
+    saml.security.authentication.listener:
+        class: Mpf\SamlBundle\Security\Firewall\SamlListener
+        arguments: ["@security.token_storage", "@security.authentication.manager"]
+        public: false
+    

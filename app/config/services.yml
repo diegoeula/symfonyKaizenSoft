@@ -1,0 +1,18 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/book/service_container.html
+parameters:
+#    parameter_name: value
+
+services:
+#    service_name:
+#        class: AppBundle\Directory\ClassName
+#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    
+    app.menu_builder:
+        class: Mpf\TemplateBundle\Menu\MenuBuilder
+        arguments: ["@knp_menu.factory","@doctrine.orm.entity_manager","@security.token_storage"]
+        tags:
+            - { name: knp_menu.menu_builder, method: createMenu, alias: main } # The alias is what is used to retrieve the menu
+            - { name: knp_menu.menu_builder, method: createUserMenu, alias: user } # Named "sidebar" this time
+   
+

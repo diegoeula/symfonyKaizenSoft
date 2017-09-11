@@ -1,0 +1,15 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host: 192.168.57.207
+    database_port: 5432
+    database_name: dev
+    database_user: transportedivisas
+    database_password: consulta$159
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: null
+    mailer_password: null
+    secret: 48bf6a6bc518ddbc4bc998e688d3ccf1ee89f9e0
+    nodejs: 'http://192.168.57.76:3000'
+    gis: 'https://sig-int.mpf.gov.ar/geoserver/dac/'
+    map_cache: 'http://192.168.57.50:8888/service?'

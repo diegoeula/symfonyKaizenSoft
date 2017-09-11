@@ -1,0 +1,29 @@
+{% extends '::base.html.twig' %}
+
+{% block bootstrap %}    
+    {{ parent() }}
+    <link rel="stylesheet" href="{{node}}/static/css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="{{node}}/static/css/font-awesome/font-awesome.min.css">
+{% endblock %}
+
+
+{% block topnav %}
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a rel="nofollow"><img src="{{node}}/static/images/logoMPF.png" class="logoMPF" title="Ministerio Público Fiscal | Procuración General de la Nación" /></a>
+                <a class="navbar-brand" href="#"><span>DGAC</span>| Sistema de Análisis de Fenómenos Criminales</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                {#       {{ knp_menu_render('DacTemplateBundle:MenuBuilder:smaMainMenu', {'currentClass': 'active', 'template': 'DacTemplateBundle:Default:dash_topbar.html.twig'}) }}#}
+                {#    {{ knp_menu_render('DacTemplateBundle:MenuBuilder:userMenu', {'currentClass': 'active', 'template': 'DacTemplateBundle:Defaultknp_menu.html.twig'}) }}#}
+              {#  {{ knp_menu_render('main', {'currentClass': 'active', 'template': 'MpfTemplateBundle:Default:knp_menu.html.twig'}) }}#}
+                {# {% if is_granted('ROLE_SECDAC') %} 
+                 {{ knp_menu_render('user', {'currentClass': 'active', 'template': 'MpfTemplateBundle:Default:knp_menu.html.twig'}) }}
+                 {% endif %}#}
+            </div>
+        </div><!-- /.navbar-collapse -->
+    </nav>
+{% endblock %}
+

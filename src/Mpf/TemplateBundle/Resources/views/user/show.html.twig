@@ -1,0 +1,80 @@
+{% extends '::base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <style type="text/css">
+        a.button {
+            -webkit-appearance: button;
+            -moz-appearance: button;
+            appearance: button;
+
+            text-decoration: none;
+            color: initial;
+        }
+    </style>
+{% endblock %}
+{% block central %}
+    {{ form_start(edit_form) }}
+    {{ form_errors(edit_form) }}
+    <section id="hecho"  >
+        <div class="container">
+            <div class="center wow fadeInDown">
+                <h1  style="color: #000;">Editar usuario</h1>
+            </div> 
+            <div class="container fadeInDown">
+                <div class="container">
+                    <div class="row">
+                        <div class=" col-md-12">
+                            <div class="form-group">
+                                {{ form_row(edit_form.username)}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class=" col-md-6">
+                            <div class="form-group">
+                                {{ form_row(edit_form.isActive)}}
+                            </div>
+                        </div>
+                        <div class=" col-md-6">
+                            <div class="form-group">
+                                {{ form_row(edit_form.isAdmin)}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class=" col-md-6">
+                            <div class="form-group">
+                                {{ form_row(edit_form.name)}}
+                            </div>
+                        </div>
+                        <div class=" col-md-6">
+                            <div class="form-group">
+                                {{ form_row(edit_form.fiscalia)}}
+                            </div>
+                        </div>
+
+                    </div>
+                    <div >
+                        {{ form_rest(edit_form) }}
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input class="btn btn-primary" type="submit" value="Editar usuario" />
+                                {{ form_start(delete_form) }}
+                                <input class="btn btn-primary"  type="submit" value="Borrar usuario">
+                                {{ form_end(delete_form) }}
+                                <a href="{{ path('user_index') }}" class="btn btn-primary">Volver</a>
+                            </div>
+                        </div>	
+                    </div>
+
+                </div>	
+            </div>
+
+        </div><!--/.container-->
+    </section><!--/#main-slider-->
+    {{ form_end(edit_form) }}
+{% endblock %}
+
+

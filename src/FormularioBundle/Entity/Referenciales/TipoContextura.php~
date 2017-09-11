@@ -1,0 +1,95 @@
+<?php
+
+namespace FormularioBundle\Entity\Referenciales;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * ElementoSujecion
+ *
+ * @ORM\Table(name="referencias.tipo_contextura")
+ * @ORM\Entity(repositoryClass="FormularioBundle\Repository\TipoContexturaRepository")
+ */
+class TipoContextura
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="descripcion", type="string", length=1024)
+     */
+    private $descripcion;
+     /**
+     * @var int
+     *
+     * @ORM\Column(name="id_ori", type="integer")
+     */
+    private $id_ori;
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set descripcion
+     *
+     * @param string $descripcion
+     *
+     * @return ViolenciaCaptacion
+     */
+    public function setDescripcion($descripcion)
+    {
+        $this->descripcion = $descripcion;
+
+        return $this;
+    }
+
+    /**
+     * Get descripcion
+     *
+     * @return string
+     */
+    public function getDescripcion()
+    {
+        return $this->descripcion;
+    }
+
+    /**
+     * Set idOri
+     *
+     * @param integer $idOri
+     *
+     * @return TipoContextura
+     */
+    public function setIdOri($idOri)
+    {
+        $this->id_ori = $idOri;
+
+        return $this;
+    }
+
+    /**
+     * Get idOri
+     *
+     * @return integer
+     */
+    public function getIdOri()
+    {
+        return $this->id_ori;
+    }
+}

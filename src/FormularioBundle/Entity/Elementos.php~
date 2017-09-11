@@ -1,0 +1,1496 @@
+<?php
+
+namespace FormularioBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\ManyToMany;
+use Doctrine\ORM\Mapping\JoinTable;
+use Doctrine\ORM\Mapping\JoinColumn;
+
+/**
+ * Elementos
+ *
+ * @ORM\Table(name="transportedivisas.elementos")
+ * @ORM\Entity(repositoryClass="FormularioBundle\Repository\ElementosRepository")
+ */
+class Elementos {
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="TipoElemento")
+     * @ORM\JoinColumn(name="tipoelemento", referencedColumnName="id")
+     */
+    private $tipoelemento;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Elemento")
+     * @ORM\JoinColumn(name="elementoId", referencedColumnName="id")
+     */
+    private $elementoId;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="cantidad", type="integer", nullable=true)
+     */
+    private $cantidad;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="TipoVehiculo")
+     * @ORM\JoinColumn(name="tipovehiculo", referencedColumnName="id")
+     */
+    private $tipovehiculo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="dominioserie", type="string", length=255, nullable=true)
+     */
+    private $dominioserie;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="modelo", type="string", length=255, nullable=true)
+     */
+    private $modelo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="color", type="string", length=255, nullable=true)
+     */
+    private $color;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="propietariov", type="string", length=255, nullable=true)
+     */
+    private $propietariov;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="observacionesi", type="string", length=1024, nullable=true)
+     */
+    private $observacionesi;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="rolhechov", type="string", length=1024, nullable=true)
+     */
+    private $rolhechov;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="descripcion", type="string", length=1024, nullable=true)
+     */
+    private $descripcion;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Nacionalidad")
+     * @ORM\JoinColumn(name="nacionalidad", referencedColumnName="id")
+     */
+    private $nacionalidad;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="TipoBien")
+     * @ORM\JoinColumn(name="tipobien", referencedColumnName="id")
+     */
+    private $tipobien;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="propietario", type="string", length=255, nullable=true)
+     */
+    private $propietario;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="TipoZonaVinculadoHecho")
+     * @ORM\JoinColumn(name="tipozonavinculadohecho", referencedColumnName="id")
+     */
+    private $tipozonavinculadohecho;
+
+    /**
+     * @ManyToMany(targetEntity="MedidaSeguridad", cascade={"persist"})
+     * @JoinTable(name="transportedivisas.HechoMedidaSeguridad",
+     *      joinColumns={@JoinColumn(name="hecho_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@JoinColumn(name="medidaseguridad_id", referencedColumnName="id")}
+     *      )
+     * */
+    private $MedidaSeguridad;
+
+    /**
+     * @ManyToMany(targetEntity="EstupefacienteAccionInmueble", cascade={"persist"})
+     * @JoinTable(name="transportedivisas.HechoEstupefacienteAccionInmueble",
+     *      joinColumns={@JoinColumn(name="hecho_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@JoinColumn(name="estupefacienteaccioninmueble_id", referencedColumnName="id")}
+     *      )
+     * */
+    private $EstupefacienteAccionInmueble;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="finesacciones", type="boolean", nullable=true)
+     */
+    private $finesacciones;
+
+    /**
+     * @ManyToMany(targetEntity="TipoFinesAcciones", cascade={"persist"})
+     * @JoinTable(name="transportedivisas.HechoTipoFinesAcciones",
+     *      joinColumns={@JoinColumn(name="hecho_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@JoinColumn(name="tipofinesacciones_id", referencedColumnName="id")}
+     *      )
+     * */
+    private $TipoFinesAcciones;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="dinerocantidad", type="integer", nullable=true)
+     */
+    private $dinerocantidad;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="DineroUnidad")
+     * @ORM\JoinColumn(name="dinerounidad", referencedColumnName="id")
+     */
+    private $dinerounidad;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="celularmarca", type="string", length=255, nullable=true)
+     */
+    private $celularmarca;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="celularmodelo", type="string", length=255, nullable=true)
+     */
+    private $celularmodelo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="celulartitular", type="string", length=255, nullable=true)
+     */
+    private $celulartitular;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="celularnro", type="string", length=255, nullable=true)
+     */
+    private $celularnro;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="celularimei", type="string", length=255, nullable=true)
+     */
+    private $celularimei;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="celularsim", type="string", length=255, nullable=true)
+     */
+    private $celularsim;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="CelularCompania")
+     * @ORM\JoinColumn(name="celularcompania", referencedColumnName="id")
+     */
+    private $celularcompania;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="CelularModoContratacion")
+     * @ORM\JoinColumn(name="celularmodocontratacion", referencedColumnName="id")
+     */
+    private $celularmodocontratacion;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="armacalibre", type="string", length=255, nullable=true)
+     */
+    private $armacalibre;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="armamarca", type="string", length=255, nullable=true)
+     */
+    private $armamarca;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="armamodelo", type="string", length=255, nullable=true)
+     */
+    private $armamodelo;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="armaanmac", type="boolean", nullable=true)
+     */
+    private $armaanmac;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="armaserie", type="string", length=255, nullable=true)
+     */
+    private $armaserie;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="direccion", type="string", length=1024, nullable=true)
+     */
+    private $direccion;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="latitud", type="string", length=100, nullable=true)
+     */
+    private $latitud;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="longitud", type="string", length=100, nullable=true)
+     */
+    private $longitud;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="manzana", type="string", length=100, nullable=true)
+     */
+    private $manzana;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="torre", type="string", length=100, nullable=true)
+     */
+    private $torre;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="piso", type="string", length=100, nullable=true)
+     */
+    private $piso;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="depto", type="string", length=100, nullable=true)
+     */
+    private $depto;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="casa", type="string", length=100, nullable=true)
+     */
+    private $casa;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="km", type="string", length=100, nullable=true)
+     */
+    private $km;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="referencia", type="string", length=1024, nullable=true)
+     */
+    private $referencia;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="descripcionmaterial", type="string", length=2048, nullable=true)
+     */
+    private $descripcionmaterial;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="fojamaterial", type="string", length=1024, nullable=true)
+     */
+    private $fojamaterial;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->MedidaSeguridad = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->EstupefacienteAccionInmueble = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->TipoFinesAcciones = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set cantidad
+     *
+     * @param integer $cantidad
+     *
+     * @return Elementos
+     */
+    public function setCantidad($cantidad)
+    {
+        $this->cantidad = $cantidad;
+
+        return $this;
+    }
+
+    /**
+     * Get cantidad
+     *
+     * @return integer
+     */
+    public function getCantidad()
+    {
+        return $this->cantidad;
+    }
+
+    /**
+     * Set dominioserie
+     *
+     * @param string $dominioserie
+     *
+     * @return Elementos
+     */
+    public function setDominioserie($dominioserie)
+    {
+        $this->dominioserie = $dominioserie;
+
+        return $this;
+    }
+
+    /**
+     * Get dominioserie
+     *
+     * @return string
+     */
+    public function getDominioserie()
+    {
+        return $this->dominioserie;
+    }
+
+    /**
+     * Set modelo
+     *
+     * @param string $modelo
+     *
+     * @return Elementos
+     */
+    public function setModelo($modelo)
+    {
+        $this->modelo = $modelo;
+
+        return $this;
+    }
+
+    /**
+     * Get modelo
+     *
+     * @return string
+     */
+    public function getModelo()
+    {
+        return $this->modelo;
+    }
+
+    /**
+     * Set color
+     *
+     * @param string $color
+     *
+     * @return Elementos
+     */
+    public function setColor($color)
+    {
+        $this->color = $color;
+
+        return $this;
+    }
+
+    /**
+     * Get color
+     *
+     * @return string
+     */
+    public function getColor()
+    {
+        return $this->color;
+    }
+
+    /**
+     * Set propietariov
+     *
+     * @param string $propietariov
+     *
+     * @return Elementos
+     */
+    public function setPropietariov($propietariov)
+    {
+        $this->propietariov = $propietariov;
+
+        return $this;
+    }
+
+    /**
+     * Get propietariov
+     *
+     * @return string
+     */
+    public function getPropietariov()
+    {
+        return $this->propietariov;
+    }
+
+    /**
+     * Set descripcion
+     *
+     * @param string $descripcion
+     *
+     * @return Elementos
+     */
+    public function setDescripcion($descripcion)
+    {
+        $this->descripcion = $descripcion;
+
+        return $this;
+    }
+
+    /**
+     * Get descripcion
+     *
+     * @return string
+     */
+    public function getDescripcion()
+    {
+        return $this->descripcion;
+    }
+
+    /**
+     * Set propietario
+     *
+     * @param string $propietario
+     *
+     * @return Elementos
+     */
+    public function setPropietario($propietario)
+    {
+        $this->propietario = $propietario;
+
+        return $this;
+    }
+
+    /**
+     * Get propietario
+     *
+     * @return string
+     */
+    public function getPropietario()
+    {
+        return $this->propietario;
+    }
+
+    /**
+     * Set finesacciones
+     *
+     * @param boolean $finesacciones
+     *
+     * @return Elementos
+     */
+    public function setFinesacciones($finesacciones)
+    {
+        $this->finesacciones = $finesacciones;
+
+        return $this;
+    }
+
+    /**
+     * Get finesacciones
+     *
+     * @return boolean
+     */
+    public function getFinesacciones()
+    {
+        return $this->finesacciones;
+    }
+
+    /**
+     * Set dinerocantidad
+     *
+     * @param integer $dinerocantidad
+     *
+     * @return Elementos
+     */
+    public function setDinerocantidad($dinerocantidad)
+    {
+        $this->dinerocantidad = $dinerocantidad;
+
+        return $this;
+    }
+
+    /**
+     * Get dinerocantidad
+     *
+     * @return integer
+     */
+    public function getDinerocantidad()
+    {
+        return $this->dinerocantidad;
+    }
+
+    /**
+     * Set celularmarca
+     *
+     * @param string $celularmarca
+     *
+     * @return Elementos
+     */
+    public function setCelularmarca($celularmarca)
+    {
+        $this->celularmarca = $celularmarca;
+
+        return $this;
+    }
+
+    /**
+     * Get celularmarca
+     *
+     * @return string
+     */
+    public function getCelularmarca()
+    {
+        return $this->celularmarca;
+    }
+
+    /**
+     * Set celularmodelo
+     *
+     * @param string $celularmodelo
+     *
+     * @return Elementos
+     */
+    public function setCelularmodelo($celularmodelo)
+    {
+        $this->celularmodelo = $celularmodelo;
+
+        return $this;
+    }
+
+    /**
+     * Get celularmodelo
+     *
+     * @return string
+     */
+    public function getCelularmodelo()
+    {
+        return $this->celularmodelo;
+    }
+
+    /**
+     * Set celulartitular
+     *
+     * @param string $celulartitular
+     *
+     * @return Elementos
+     */
+    public function setCelulartitular($celulartitular)
+    {
+        $this->celulartitular = $celulartitular;
+
+        return $this;
+    }
+
+    /**
+     * Get celulartitular
+     *
+     * @return string
+     */
+    public function getCelulartitular()
+    {
+        return $this->celulartitular;
+    }
+
+    /**
+     * Set celularnro
+     *
+     * @param string $celularnro
+     *
+     * @return Elementos
+     */
+    public function setCelularnro($celularnro)
+    {
+        $this->celularnro = $celularnro;
+
+        return $this;
+    }
+
+    /**
+     * Get celularnro
+     *
+     * @return string
+     */
+    public function getCelularnro()
+    {
+        return $this->celularnro;
+    }
+
+    /**
+     * Set celularimei
+     *
+     * @param string $celularimei
+     *
+     * @return Elementos
+     */
+    public function setCelularimei($celularimei)
+    {
+        $this->celularimei = $celularimei;
+
+        return $this;
+    }
+
+    /**
+     * Get celularimei
+     *
+     * @return string
+     */
+    public function getCelularimei()
+    {
+        return $this->celularimei;
+    }
+
+    /**
+     * Set celularsim
+     *
+     * @param string $celularsim
+     *
+     * @return Elementos
+     */
+    public function setCelularsim($celularsim)
+    {
+        $this->celularsim = $celularsim;
+
+        return $this;
+    }
+
+    /**
+     * Get celularsim
+     *
+     * @return string
+     */
+    public function getCelularsim()
+    {
+        return $this->celularsim;
+    }
+
+    /**
+     * Set armacalibre
+     *
+     * @param string $armacalibre
+     *
+     * @return Elementos
+     */
+    public function setArmacalibre($armacalibre)
+    {
+        $this->armacalibre = $armacalibre;
+
+        return $this;
+    }
+
+    /**
+     * Get armacalibre
+     *
+     * @return string
+     */
+    public function getArmacalibre()
+    {
+        return $this->armacalibre;
+    }
+
+    /**
+     * Set armamarca
+     *
+     * @param string $armamarca
+     *
+     * @return Elementos
+     */
+    public function setArmamarca($armamarca)
+    {
+        $this->armamarca = $armamarca;
+
+        return $this;
+    }
+
+    /**
+     * Get armamarca
+     *
+     * @return string
+     */
+    public function getArmamarca()
+    {
+        return $this->armamarca;
+    }
+
+    /**
+     * Set armamodelo
+     *
+     * @param string $armamodelo
+     *
+     * @return Elementos
+     */
+    public function setArmamodelo($armamodelo)
+    {
+        $this->armamodelo = $armamodelo;
+
+        return $this;
+    }
+
+    /**
+     * Get armamodelo
+     *
+     * @return string
+     */
+    public function getArmamodelo()
+    {
+        return $this->armamodelo;
+    }
+
+    /**
+     * Set armaanmac
+     *
+     * @param boolean $armaanmac
+     *
+     * @return Elementos
+     */
+    public function setArmaanmac($armaanmac)
+    {
+        $this->armaanmac = $armaanmac;
+
+        return $this;
+    }
+
+    /**
+     * Get armaanmac
+     *
+     * @return boolean
+     */
+    public function getArmaanmac()
+    {
+        return $this->armaanmac;
+    }
+
+    /**
+     * Set armaserie
+     *
+     * @param string $armaserie
+     *
+     * @return Elementos
+     */
+    public function setArmaserie($armaserie)
+    {
+        $this->armaserie = $armaserie;
+
+        return $this;
+    }
+
+    /**
+     * Get armaserie
+     *
+     * @return string
+     */
+    public function getArmaserie()
+    {
+        return $this->armaserie;
+    }
+
+    /**
+     * Set direccion
+     *
+     * @param string $direccion
+     *
+     * @return Elementos
+     */
+    public function setDireccion($direccion)
+    {
+        $this->direccion = $direccion;
+
+        return $this;
+    }
+
+    /**
+     * Get direccion
+     *
+     * @return string
+     */
+    public function getDireccion()
+    {
+        return $this->direccion;
+    }
+
+    /**
+     * Set latitud
+     *
+     * @param string $latitud
+     *
+     * @return Elementos
+     */
+    public function setLatitud($latitud)
+    {
+        $this->latitud = $latitud;
+
+        return $this;
+    }
+
+    /**
+     * Get latitud
+     *
+     * @return string
+     */
+    public function getLatitud()
+    {
+        return $this->latitud;
+    }
+
+    /**
+     * Set longitud
+     *
+     * @param string $longitud
+     *
+     * @return Elementos
+     */
+    public function setLongitud($longitud)
+    {
+        $this->longitud = $longitud;
+
+        return $this;
+    }
+
+    /**
+     * Get longitud
+     *
+     * @return string
+     */
+    public function getLongitud()
+    {
+        return $this->longitud;
+    }
+
+    /**
+     * Set manzana
+     *
+     * @param string $manzana
+     *
+     * @return Elementos
+     */
+    public function setManzana($manzana)
+    {
+        $this->manzana = $manzana;
+
+        return $this;
+    }
+
+    /**
+     * Get manzana
+     *
+     * @return string
+     */
+    public function getManzana()
+    {
+        return $this->manzana;
+    }
+
+    /**
+     * Set torre
+     *
+     * @param string $torre
+     *
+     * @return Elementos
+     */
+    public function setTorre($torre)
+    {
+        $this->torre = $torre;
+
+        return $this;
+    }
+
+    /**
+     * Get torre
+     *
+     * @return string
+     */
+    public function getTorre()
+    {
+        return $this->torre;
+    }
+
+    /**
+     * Set piso
+     *
+     * @param string $piso
+     *
+     * @return Elementos
+     */
+    public function setPiso($piso)
+    {
+        $this->piso = $piso;
+
+        return $this;
+    }
+
+    /**
+     * Get piso
+     *
+     * @return string
+     */
+    public function getPiso()
+    {
+        return $this->piso;
+    }
+
+    /**
+     * Set depto
+     *
+     * @param string $depto
+     *
+     * @return Elementos
+     */
+    public function setDepto($depto)
+    {
+        $this->depto = $depto;
+
+        return $this;
+    }
+
+    /**
+     * Get depto
+     *
+     * @return string
+     */
+    public function getDepto()
+    {
+        return $this->depto;
+    }
+
+    /**
+     * Set casa
+     *
+     * @param string $casa
+     *
+     * @return Elementos
+     */
+    public function setCasa($casa)
+    {
+        $this->casa = $casa;
+
+        return $this;
+    }
+
+    /**
+     * Get casa
+     *
+     * @return string
+     */
+    public function getCasa()
+    {
+        return $this->casa;
+    }
+
+    /**
+     * Set km
+     *
+     * @param string $km
+     *
+     * @return Elementos
+     */
+    public function setKm($km)
+    {
+        $this->km = $km;
+
+        return $this;
+    }
+
+    /**
+     * Get km
+     *
+     * @return string
+     */
+    public function getKm()
+    {
+        return $this->km;
+    }
+
+    /**
+     * Set referencia
+     *
+     * @param string $referencia
+     *
+     * @return Elementos
+     */
+    public function setReferencia($referencia)
+    {
+        $this->referencia = $referencia;
+
+        return $this;
+    }
+
+    /**
+     * Get referencia
+     *
+     * @return string
+     */
+    public function getReferencia()
+    {
+        return $this->referencia;
+    }
+
+    /**
+     * Set tipoelemento
+     *
+     * @param \FormularioBundle\Entity\TipoElemento $tipoelemento
+     *
+     * @return Elementos
+     */
+    public function setTipoelemento(\FormularioBundle\Entity\TipoElemento $tipoelemento = null)
+    {
+        $this->tipoelemento = $tipoelemento;
+
+        return $this;
+    }
+
+    /**
+     * Get tipoelemento
+     *
+     * @return \FormularioBundle\Entity\TipoElemento
+     */
+    public function getTipoelemento()
+    {
+        return $this->tipoelemento;
+    }
+
+    /**
+     * Set elementoId
+     *
+     * @param \FormularioBundle\Entity\Elemento $elementoId
+     *
+     * @return Elementos
+     */
+    public function setElementoId(\FormularioBundle\Entity\Elemento $elementoId = null)
+    {
+        $this->elementoId = $elementoId;
+
+        return $this;
+    }
+
+    /**
+     * Get elementoId
+     *
+     * @return \FormularioBundle\Entity\Elemento
+     */
+    public function getElementoId()
+    {
+        return $this->elementoId;
+    }
+
+    /**
+     * Set tipovehiculo
+     *
+     * @param \FormularioBundle\Entity\TipoVehiculo $tipovehiculo
+     *
+     * @return Elementos
+     */
+    public function setTipovehiculo(\FormularioBundle\Entity\TipoVehiculo $tipovehiculo = null)
+    {
+        $this->tipovehiculo = $tipovehiculo;
+
+        return $this;
+    }
+
+    /**
+     * Get tipovehiculo
+     *
+     * @return \FormularioBundle\Entity\TipoVehiculo
+     */
+    public function getTipovehiculo()
+    {
+        return $this->tipovehiculo;
+    }
+
+    /**
+     * Set nacionalidad
+     *
+     * @param \FormularioBundle\Entity\Nacionalidad $nacionalidad
+     *
+     * @return Elementos
+     */
+    public function setNacionalidad(\FormularioBundle\Entity\Nacionalidad $nacionalidad = null)
+    {
+        $this->nacionalidad = $nacionalidad;
+
+        return $this;
+    }
+
+    /**
+     * Get nacionalidad
+     *
+     * @return \FormularioBundle\Entity\Nacionalidad
+     */
+    public function getNacionalidad()
+    {
+        return $this->nacionalidad;
+    }
+
+    /**
+     * Set tipobien
+     *
+     * @param \FormularioBundle\Entity\TipoBien $tipobien
+     *
+     * @return Elementos
+     */
+    public function setTipobien(\FormularioBundle\Entity\TipoBien $tipobien = null)
+    {
+        $this->tipobien = $tipobien;
+
+        return $this;
+    }
+
+    /**
+     * Get tipobien
+     *
+     * @return \FormularioBundle\Entity\TipoBien
+     */
+    public function getTipobien()
+    {
+        return $this->tipobien;
+    }
+
+    /**
+     * Set tipozonavinculadohecho
+     *
+     * @param \FormularioBundle\Entity\TipoZonaVinculadoHecho $tipozonavinculadohecho
+     *
+     * @return Elementos
+     */
+    public function setTipozonavinculadohecho(\FormularioBundle\Entity\TipoZonaVinculadoHecho $tipozonavinculadohecho = null)
+    {
+        $this->tipozonavinculadohecho = $tipozonavinculadohecho;
+
+        return $this;
+    }
+
+    /**
+     * Get tipozonavinculadohecho
+     *
+     * @return \FormularioBundle\Entity\TipoZonaVinculadoHecho
+     */
+    public function getTipozonavinculadohecho()
+    {
+        return $this->tipozonavinculadohecho;
+    }
+
+    /**
+     * Add medidaSeguridad
+     *
+     * @param \FormularioBundle\Entity\MedidaSeguridad $medidaSeguridad
+     *
+     * @return Elementos
+     */
+    public function addMedidaSeguridad(\FormularioBundle\Entity\MedidaSeguridad $medidaSeguridad)
+    {
+        $this->MedidaSeguridad[] = $medidaSeguridad;
+
+        return $this;
+    }
+
+    /**
+     * Remove medidaSeguridad
+     *
+     * @param \FormularioBundle\Entity\MedidaSeguridad $medidaSeguridad
+     */
+    public function removeMedidaSeguridad(\FormularioBundle\Entity\MedidaSeguridad $medidaSeguridad)
+    {
+        $this->MedidaSeguridad->removeElement($medidaSeguridad);
+    }
+
+    /**
+     * Get medidaSeguridad
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMedidaSeguridad()
+    {
+        return $this->MedidaSeguridad;
+    }
+
+    /**
+     * Add estupefacienteAccionInmueble
+     *
+     * @param \FormularioBundle\Entity\EstupefacienteAccionInmueble $estupefacienteAccionInmueble
+     *
+     * @return Elementos
+     */
+    public function addEstupefacienteAccionInmueble(\FormularioBundle\Entity\EstupefacienteAccionInmueble $estupefacienteAccionInmueble)
+    {
+        $this->EstupefacienteAccionInmueble[] = $estupefacienteAccionInmueble;
+
+        return $this;
+    }
+
+    /**
+     * Remove estupefacienteAccionInmueble
+     *
+     * @param \FormularioBundle\Entity\EstupefacienteAccionInmueble $estupefacienteAccionInmueble
+     */
+    public function removeEstupefacienteAccionInmueble(\FormularioBundle\Entity\EstupefacienteAccionInmueble $estupefacienteAccionInmueble)
+    {
+        $this->EstupefacienteAccionInmueble->removeElement($estupefacienteAccionInmueble);
+    }
+
+    /**
+     * Get estupefacienteAccionInmueble
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEstupefacienteAccionInmueble()
+    {
+        return $this->EstupefacienteAccionInmueble;
+    }
+
+    /**
+     * Add tipoFinesAccione
+     *
+     * @param \FormularioBundle\Entity\TipoFinesAcciones $tipoFinesAccione
+     *
+     * @return Elementos
+     */
+    public function addTipoFinesAccione(\FormularioBundle\Entity\TipoFinesAcciones $tipoFinesAccione)
+    {
+        $this->TipoFinesAcciones[] = $tipoFinesAccione;
+
+        return $this;
+    }
+
+    /**
+     * Remove tipoFinesAccione
+     *
+     * @param \FormularioBundle\Entity\TipoFinesAcciones $tipoFinesAccione
+     */
+    public function removeTipoFinesAccione(\FormularioBundle\Entity\TipoFinesAcciones $tipoFinesAccione)
+    {
+        $this->TipoFinesAcciones->removeElement($tipoFinesAccione);
+    }
+
+    /**
+     * Get tipoFinesAcciones
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTipoFinesAcciones()
+    {
+        return $this->TipoFinesAcciones;
+    }
+
+    /**
+     * Set dinerounidad
+     *
+     * @param \FormularioBundle\Entity\DineroUnidad $dinerounidad
+     *
+     * @return Elementos
+     */
+    public function setDinerounidad(\FormularioBundle\Entity\DineroUnidad $dinerounidad = null)
+    {
+        $this->dinerounidad = $dinerounidad;
+
+        return $this;
+    }
+
+    /**
+     * Get dinerounidad
+     *
+     * @return \FormularioBundle\Entity\DineroUnidad
+     */
+    public function getDinerounidad()
+    {
+        return $this->dinerounidad;
+    }
+
+    /**
+     * Set celularcompania
+     *
+     * @param \FormularioBundle\Entity\CelularCompania $celularcompania
+     *
+     * @return Elementos
+     */
+    public function setCelularcompania(\FormularioBundle\Entity\CelularCompania $celularcompania = null)
+    {
+        $this->celularcompania = $celularcompania;
+
+        return $this;
+    }
+
+    /**
+     * Get celularcompania
+     *
+     * @return \FormularioBundle\Entity\CelularCompania
+     */
+    public function getCelularcompania()
+    {
+        return $this->celularcompania;
+    }
+
+    /**
+     * Set celularmodocontratacion
+     *
+     * @param \FormularioBundle\Entity\CelularModoContratacion $celularmodocontratacion
+     *
+     * @return Elementos
+     */
+    public function setCelularmodocontratacion(\FormularioBundle\Entity\CelularModoContratacion $celularmodocontratacion = null)
+    {
+        $this->celularmodocontratacion = $celularmodocontratacion;
+
+        return $this;
+    }
+
+    /**
+     * Get celularmodocontratacion
+     *
+     * @return \FormularioBundle\Entity\CelularModoContratacion
+     */
+    public function getCelularmodocontratacion()
+    {
+        return $this->celularmodocontratacion;
+    }
+
+    /**
+     * Set observacionesi
+     *
+     * @param string $observacionesi
+     *
+     * @return Elementos
+     */
+    public function setObservacionesi($observacionesi)
+    {
+        $this->observacionesi = $observacionesi;
+
+        return $this;
+    }
+
+    /**
+     * Get observacionesi
+     *
+     * @return string
+     */
+    public function getObservacionesi()
+    {
+        return $this->observacionesi;
+    }
+
+    /**
+     * Set rolhechov
+     *
+     * @param string $rolhechov
+     *
+     * @return Elementos
+     */
+    public function setRolhechov($rolhechov)
+    {
+        $this->rolhechov = $rolhechov;
+
+        return $this;
+    }
+
+    /**
+     * Get rolhechov
+     *
+     * @return string
+     */
+    public function getRolhechov()
+    {
+        return $this->rolhechov;
+    }
+
+    /**
+     * Set descripcionmaterial
+     *
+     * @param string $descripcionmaterial
+     *
+     * @return Elementos
+     */
+    public function setDescripcionmaterial($descripcionmaterial)
+    {
+        $this->descripcionmaterial = $descripcionmaterial;
+
+        return $this;
+    }
+
+    /**
+     * Get descripcionmaterial
+     *
+     * @return string
+     */
+    public function getDescripcionmaterial()
+    {
+        return $this->descripcionmaterial;
+    }
+
+    /**
+     * Set fojamaterial
+     *
+     * @param string $fojamaterial
+     *
+     * @return Elementos
+     */
+    public function setFojamaterial($fojamaterial)
+    {
+        $this->fojamaterial = $fojamaterial;
+
+        return $this;
+    }
+
+    /**
+     * Get fojamaterial
+     *
+     * @return string
+     */
+    public function getFojamaterial()
+    {
+        return $this->fojamaterial;
+    }
+}

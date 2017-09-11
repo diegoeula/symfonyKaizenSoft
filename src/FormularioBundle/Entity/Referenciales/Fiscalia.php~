@@ -1,0 +1,96 @@
+<?php
+
+namespace FormularioBundle\Entity\Referenciales;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Fiscalia
+ *
+ * @ORM\Table(name="referenciales.Fiscalia")
+ * @ORM\Entity
+ */
+class Fiscalia
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="descripcion", type="string", length=1024)
+     */
+    private $descripcion;
+
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id_ori", type="integer")
+     */
+    private $id_ori;
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set descripcion
+     *
+     * @param string $descripcion
+     *
+     * @return Fiscalia
+     */
+    public function setDescripcion($descripcion)
+    {
+        $this->descripcion = $descripcion;
+
+        return $this;
+    }
+
+    /**
+     * Get descripcion
+     *
+     * @return string
+     */
+    public function getDescripcion()
+    {
+        return $this->descripcion;
+    }
+
+    /**
+     * Set idOri
+     *
+     * @param integer $idOri
+     *
+     * @return Fiscalia
+     */
+    public function setIdOri($idOri)
+    {
+        $this->id_ori = $idOri;
+
+        return $this;
+    }
+
+    /**
+     * Get idOri
+     *
+     * @return integer
+     */
+    public function getIdOri()
+    {
+        return $this->id_ori;
+    }
+}

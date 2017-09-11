@@ -1,0 +1,501 @@
+<?php
+
+namespace FormularioBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\ManyToMany;
+use Doctrine\ORM\Mapping\JoinTable;
+use Doctrine\ORM\Mapping\JoinColumn;
+
+/**
+ * Droga
+ *
+ * @ORM\Table(name="transportedivisas.droga")
+ * @ORM\Entity(repositoryClass="FormularioBundle\Repository\DrogaRepository")
+ */
+class Droga {
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Estupefaciente")
+     * @ORM\JoinColumn(name="tipo", referencedColumnName="id")
+     */
+    private $tipo;
+
+    /**
+     * @var decimal
+     * @ORM\Column(name="cantidad", type="decimal", precision=19, scale=4, nullable=true)
+     */
+    private $cantidad;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="UnidadEstupefaciente")
+     * @ORM\JoinColumn(name="unidadestupefaciente", referencedColumnName="id")
+     */
+    private $unidadestupefaciente;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="precio", type="string", length=255, nullable=true)
+     */
+    private $precio;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="nivelPureza", type="integer", nullable=true)
+     */
+    private $nivelPureza;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="fraccionadaparaconsumo", type="boolean", nullable=true)
+     */
+    private $fraccionadaparaconsumo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="colorenvoltorio", type="string", length=255, nullable=true)
+     */
+    private $colorenvoltorio;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="simboloenvoltorio", type="string", length=255, nullable=true)
+     */
+    private $simboloenvoltorio;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="formapresentacion", type="string", length=255, nullable=true)
+     */
+    private $formapresentacion;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="formapresentacioncantidad", type="string", length=255, nullable=true)
+     */
+    private $formapresentacioncantidad;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="EstadoEstupefaciente")
+     * @ORM\JoinColumn(name="estado", referencedColumnName="id")
+     */
+    private $estado;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="observaciones", type="string", length=1024, nullable=true)
+     */
+    private $observaciones;
+
+    /**
+     * @ManyToMany(targetEntity="EstupefacienteEncuentra", cascade={"persist"})
+     * @JoinTable(name="transportedivisas.drogaEstupefacienteEncuentra",
+     *      joinColumns={@JoinColumn(name="droga_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@JoinColumn(name="estupefacienteencuentra_id", referencedColumnName="id")}
+     *      )
+     * */
+    private $EstupefacienteEncuentra;
+
+    /**
+     * @ManyToMany(targetEntity="EstupefacienteEncuentraCamuflada", cascade={"persist"})
+     * @JoinTable(name="transportedivisas.drogaEstupefacienteEncuentraCamuflada",
+     *      joinColumns={@JoinColumn(name="droga_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@JoinColumn(name="estupefacienteencuentracamuflada_id", referencedColumnName="id")}
+     *      )
+     * */
+    private $EstupefacienteEncuentraCamuflada;
+
+    
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->EstupefacienteEncuentra = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->EstupefacienteEncuentraCamuflada = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set cantidad
+     *
+     * @param string $cantidad
+     *
+     * @return Droga
+     */
+    public function setCantidad($cantidad)
+    {
+        $this->cantidad = $cantidad;
+
+        return $this;
+    }
+
+    /**
+     * Get cantidad
+     *
+     * @return string
+     */
+    public function getCantidad()
+    {
+        return $this->cantidad;
+    }
+
+    /**
+     * Set precio
+     *
+     * @param string $precio
+     *
+     * @return Droga
+     */
+    public function setPrecio($precio)
+    {
+        $this->precio = $precio;
+
+        return $this;
+    }
+
+    /**
+     * Get precio
+     *
+     * @return string
+     */
+    public function getPrecio()
+    {
+        return $this->precio;
+    }
+
+    /**
+     * Set nivelPureza
+     *
+     * @param integer $nivelPureza
+     *
+     * @return Droga
+     */
+    public function setNivelPureza($nivelPureza)
+    {
+        $this->nivelPureza = $nivelPureza;
+
+        return $this;
+    }
+
+    /**
+     * Get nivelPureza
+     *
+     * @return integer
+     */
+    public function getNivelPureza()
+    {
+        return $this->nivelPureza;
+    }
+
+    /**
+     * Set fraccionadaparaconsumo
+     *
+     * @param boolean $fraccionadaparaconsumo
+     *
+     * @return Droga
+     */
+    public function setFraccionadaparaconsumo($fraccionadaparaconsumo)
+    {
+        $this->fraccionadaparaconsumo = $fraccionadaparaconsumo;
+
+        return $this;
+    }
+
+    /**
+     * Get fraccionadaparaconsumo
+     *
+     * @return boolean
+     */
+    public function getFraccionadaparaconsumo()
+    {
+        return $this->fraccionadaparaconsumo;
+    }
+
+    /**
+     * Set colorenvoltorio
+     *
+     * @param string $colorenvoltorio
+     *
+     * @return Droga
+     */
+    public function setColorenvoltorio($colorenvoltorio)
+    {
+        $this->colorenvoltorio = $colorenvoltorio;
+
+        return $this;
+    }
+
+    /**
+     * Get colorenvoltorio
+     *
+     * @return string
+     */
+    public function getColorenvoltorio()
+    {
+        return $this->colorenvoltorio;
+    }
+
+    /**
+     * Set simboloenvoltorio
+     *
+     * @param string $simboloenvoltorio
+     *
+     * @return Droga
+     */
+    public function setSimboloenvoltorio($simboloenvoltorio)
+    {
+        $this->simboloenvoltorio = $simboloenvoltorio;
+
+        return $this;
+    }
+
+    /**
+     * Get simboloenvoltorio
+     *
+     * @return string
+     */
+    public function getSimboloenvoltorio()
+    {
+        return $this->simboloenvoltorio;
+    }
+
+    /**
+     * Set formapresentacion
+     *
+     * @param string $formapresentacion
+     *
+     * @return Droga
+     */
+    public function setFormapresentacion($formapresentacion)
+    {
+        $this->formapresentacion = $formapresentacion;
+
+        return $this;
+    }
+
+    /**
+     * Get formapresentacion
+     *
+     * @return string
+     */
+    public function getFormapresentacion()
+    {
+        return $this->formapresentacion;
+    }
+
+    /**
+     * Set formapresentacioncantidad
+     *
+     * @param string $formapresentacioncantidad
+     *
+     * @return Droga
+     */
+    public function setFormapresentacioncantidad($formapresentacioncantidad)
+    {
+        $this->formapresentacioncantidad = $formapresentacioncantidad;
+
+        return $this;
+    }
+
+    /**
+     * Get formapresentacioncantidad
+     *
+     * @return string
+     */
+    public function getFormapresentacioncantidad()
+    {
+        return $this->formapresentacioncantidad;
+    }
+
+    /**
+     * Set observaciones
+     *
+     * @param string $observaciones
+     *
+     * @return Droga
+     */
+    public function setObservaciones($observaciones)
+    {
+        $this->observaciones = $observaciones;
+
+        return $this;
+    }
+
+    /**
+     * Get observaciones
+     *
+     * @return string
+     */
+    public function getObservaciones()
+    {
+        return $this->observaciones;
+    }
+
+    /**
+     * Set tipo
+     *
+     * @param \FormularioBundle\Entity\Estupefaciente $tipo
+     *
+     * @return Droga
+     */
+    public function setTipo(\FormularioBundle\Entity\Estupefaciente $tipo = null)
+    {
+        $this->tipo = $tipo;
+
+        return $this;
+    }
+
+    /**
+     * Get tipo
+     *
+     * @return \FormularioBundle\Entity\Estupefaciente
+     */
+    public function getTipo()
+    {
+        return $this->tipo;
+    }
+
+    /**
+     * Set unidadestupefaciente
+     *
+     * @param \FormularioBundle\Entity\UnidadEstupefaciente $unidadestupefaciente
+     *
+     * @return Droga
+     */
+    public function setUnidadestupefaciente(\FormularioBundle\Entity\UnidadEstupefaciente $unidadestupefaciente = null)
+    {
+        $this->unidadestupefaciente = $unidadestupefaciente;
+
+        return $this;
+    }
+
+    /**
+     * Get unidadestupefaciente
+     *
+     * @return \FormularioBundle\Entity\UnidadEstupefaciente
+     */
+    public function getUnidadestupefaciente()
+    {
+        return $this->unidadestupefaciente;
+    }
+
+    /**
+     * Set estado
+     *
+     * @param \FormularioBundle\Entity\EstadoEstupefaciente $estado
+     *
+     * @return Droga
+     */
+    public function setEstado(\FormularioBundle\Entity\EstadoEstupefaciente $estado = null)
+    {
+        $this->estado = $estado;
+
+        return $this;
+    }
+
+    /**
+     * Get estado
+     *
+     * @return \FormularioBundle\Entity\EstadoEstupefaciente
+     */
+    public function getEstado()
+    {
+        return $this->estado;
+    }
+
+    /**
+     * Add estupefacienteEncuentra
+     *
+     * @param \FormularioBundle\Entity\EstupefacienteEncuentra $estupefacienteEncuentra
+     *
+     * @return Droga
+     */
+    public function addEstupefacienteEncuentra(\FormularioBundle\Entity\EstupefacienteEncuentra $estupefacienteEncuentra)
+    {
+        $this->EstupefacienteEncuentra[] = $estupefacienteEncuentra;
+
+        return $this;
+    }
+
+    /**
+     * Remove estupefacienteEncuentra
+     *
+     * @param \FormularioBundle\Entity\EstupefacienteEncuentra $estupefacienteEncuentra
+     */
+    public function removeEstupefacienteEncuentra(\FormularioBundle\Entity\EstupefacienteEncuentra $estupefacienteEncuentra)
+    {
+        $this->EstupefacienteEncuentra->removeElement($estupefacienteEncuentra);
+    }
+
+    /**
+     * Get estupefacienteEncuentra
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEstupefacienteEncuentra()
+    {
+        return $this->EstupefacienteEncuentra;
+    }
+
+    /**
+     * Add estupefacienteEncuentraCamuflada
+     *
+     * @param \FormularioBundle\Entity\EstupefacienteEncuentraCamuflada $estupefacienteEncuentraCamuflada
+     *
+     * @return Droga
+     */
+    public function addEstupefacienteEncuentraCamuflada(\FormularioBundle\Entity\EstupefacienteEncuentraCamuflada $estupefacienteEncuentraCamuflada)
+    {
+        $this->EstupefacienteEncuentraCamuflada[] = $estupefacienteEncuentraCamuflada;
+
+        return $this;
+    }
+
+    /**
+     * Remove estupefacienteEncuentraCamuflada
+     *
+     * @param \FormularioBundle\Entity\EstupefacienteEncuentraCamuflada $estupefacienteEncuentraCamuflada
+     */
+    public function removeEstupefacienteEncuentraCamuflada(\FormularioBundle\Entity\EstupefacienteEncuentraCamuflada $estupefacienteEncuentraCamuflada)
+    {
+        $this->EstupefacienteEncuentraCamuflada->removeElement($estupefacienteEncuentraCamuflada);
+    }
+
+    /**
+     * Get estupefacienteEncuentraCamuflada
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEstupefacienteEncuentraCamuflada()
+    {
+        return $this->EstupefacienteEncuentraCamuflada;
+    }
+}

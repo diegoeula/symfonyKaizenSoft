@@ -1,0 +1,98 @@
+<?php
+
+namespace FormularioBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Estupefaciente
+ *
+ * @ORM\Table(name="transportedivisas.estupefaciente")
+ * @ORM\Entity(repositoryClass="FormularioBundle\Repository\EstupefacienteRepository")
+ */
+class Estupefaciente
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tipo", type="string", length=255)
+     */
+    private $tipo;
+
+    
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="idCategoriaElemento", type="integer")
+     */
+    private $idCategoriaElemento;
+
+  
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set tipo
+     *
+     * @param string $tipo
+     *
+     * @return Estupefaciente
+     */
+    public function setTipo($tipo)
+    {
+        $this->tipo = $tipo;
+
+        return $this;
+    }
+
+    /**
+     * Get tipo
+     *
+     * @return string
+     */
+    public function getTipo()
+    {
+        return $this->tipo;
+    }
+
+    /**
+     * Set idCategoriaElemento
+     *
+     * @param integer $idCategoriaElemento
+     *
+     * @return Estupefaciente
+     */
+    public function setIdCategoriaElemento($idCategoriaElemento)
+    {
+        $this->idCategoriaElemento = $idCategoriaElemento;
+
+        return $this;
+    }
+
+    /**
+     * Get idCategoriaElemento
+     *
+     * @return integer
+     */
+    public function getIdCategoriaElemento()
+    {
+        return $this->idCategoriaElemento;
+    }
+}

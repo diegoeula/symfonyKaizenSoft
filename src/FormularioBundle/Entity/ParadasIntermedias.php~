@@ -1,0 +1,477 @@
+<?php
+
+namespace FormularioBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * ParadasIntermedias
+ *
+ * @ORM\Table(name="transportedivisas.paradasintermedias")
+ * @ORM\Entity(repositoryClass="FormularioBundle\Repository\ParadasIntermediasRepository")
+ */
+class ParadasIntermedias
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+     /**
+     * @ORM\ManyToOne(targetEntity="FormularioBundle\Entity\Referenciales\Pais")
+     * @ORM\JoinColumn(name="origenpais", referencedColumnName="id")
+     */
+    private $origenpais;
+    
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="origenprovincia", type="string", length=255, nullable=true)
+     */
+    private $origenprovincia;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="origendepartamento", type="string", length=255, nullable=true)
+     */
+    private $origendepartamento;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="origenlocalidad", type="string", length=255, nullable=true)
+     */
+    private $origenlocalidad;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="origendireccion", type="string", length=1024, nullable=true)
+     */
+    private $origendireccion;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="origenMerc", type="string", length=1024, nullable=true)
+     */
+    private $origenMerc;
+
+     /**
+     * @ORM\ManyToOne(targetEntity="FormularioBundle\Entity\Referenciales\Pais")
+     * @ORM\JoinColumn(name="destinopais", referencedColumnName="id")
+     */
+    private $destinopais;
+    
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="destinoprovincia", type="string", length=255, nullable=true)
+     */
+    private $destinoprovincia;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="destinodepartamento", type="string", length=255, nullable=true)
+     */
+    private $destinodepartamento;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="destinolocalidad", type="string", length=255, nullable=true)
+     */
+    private $destinolocalidad;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="destinodireccion", type="string", length=1024, nullable=true)
+     */
+    private $destinodireccion;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="paradasInter", type="string", length=1024, nullable=true)
+     */
+    private $paradasInter;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="destinoMerc", type="string", length=1024, nullable=true)
+     */
+    private $destinoMerc;
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set origen
+     *
+     * @param string $origen
+     *
+     * @return ParadasIntermedias
+     */
+    public function setOrigen($origen)
+    {
+        $this->origen = $origen;
+
+        return $this;
+    }
+
+    /**
+     * Get origen
+     *
+     * @return string
+     */
+    public function getOrigen()
+    {
+        return $this->origen;
+    }
+
+    /**
+     * Set origenMerc
+     *
+     * @param string $origenMerc
+     *
+     * @return ParadasIntermedias
+     */
+    public function setOrigenMerc($origenMerc)
+    {
+        $this->origenMerc = $origenMerc;
+
+        return $this;
+    }
+
+    /**
+     * Get origenMerc
+     *
+     * @return string
+     */
+    public function getOrigenMerc()
+    {
+        return $this->origenMerc;
+    }
+
+    /**
+     * Set destino
+     *
+     * @param string $destino
+     *
+     * @return ParadasIntermedias
+     */
+    public function setDestino($destino)
+    {
+        $this->destino = $destino;
+
+        return $this;
+    }
+
+    /**
+     * Get destino
+     *
+     * @return string
+     */
+    public function getDestino()
+    {
+        return $this->destino;
+    }
+
+    /**
+     * Set paradasInter
+     *
+     * @param string $paradasInter
+     *
+     * @return ParadasIntermedias
+     */
+    public function setParadasInter($paradasInter)
+    {
+        $this->paradasInter = $paradasInter;
+
+        return $this;
+    }
+
+    /**
+     * Get paradasInter
+     *
+     * @return string
+     */
+    public function getParadasInter()
+    {
+        return $this->paradasInter;
+    }
+
+    /**
+     * Set destinoMerc
+     *
+     * @param string $destinoMerc
+     *
+     * @return ParadasIntermedias
+     */
+    public function setDestinoMerc($destinoMerc)
+    {
+        $this->destinoMerc = $destinoMerc;
+
+        return $this;
+    }
+
+    /**
+     * Get destinoMerc
+     *
+     * @return string
+     */
+    public function getDestinoMerc()
+    {
+        return $this->destinoMerc;
+    }
+
+    /**
+     * Set origenprovincia
+     *
+     * @param string $origenprovincia
+     *
+     * @return ParadasIntermedias
+     */
+    public function setOrigenprovincia($origenprovincia)
+    {
+        $this->origenprovincia = $origenprovincia;
+
+        return $this;
+    }
+
+    /**
+     * Get origenprovincia
+     *
+     * @return string
+     */
+    public function getOrigenprovincia()
+    {
+        return $this->origenprovincia;
+    }
+
+    /**
+     * Set origendepartamento
+     *
+     * @param string $origendepartamento
+     *
+     * @return ParadasIntermedias
+     */
+    public function setOrigendepartamento($origendepartamento)
+    {
+        $this->origendepartamento = $origendepartamento;
+
+        return $this;
+    }
+
+    /**
+     * Get origendepartamento
+     *
+     * @return string
+     */
+    public function getOrigendepartamento()
+    {
+        return $this->origendepartamento;
+    }
+
+    /**
+     * Set origenlocalidad
+     *
+     * @param string $origenlocalidad
+     *
+     * @return ParadasIntermedias
+     */
+    public function setOrigenlocalidad($origenlocalidad)
+    {
+        $this->origenlocalidad = $origenlocalidad;
+
+        return $this;
+    }
+
+    /**
+     * Get origenlocalidad
+     *
+     * @return string
+     */
+    public function getOrigenlocalidad()
+    {
+        return $this->origenlocalidad;
+    }
+
+    /**
+     * Set origendireccion
+     *
+     * @param string $origendireccion
+     *
+     * @return ParadasIntermedias
+     */
+    public function setOrigendireccion($origendireccion)
+    {
+        $this->origendireccion = $origendireccion;
+
+        return $this;
+    }
+
+    /**
+     * Get origendireccion
+     *
+     * @return string
+     */
+    public function getOrigendireccion()
+    {
+        return $this->origendireccion;
+    }
+
+    /**
+     * Set destinoprovincia
+     *
+     * @param string $destinoprovincia
+     *
+     * @return ParadasIntermedias
+     */
+    public function setDestinoprovincia($destinoprovincia)
+    {
+        $this->destinoprovincia = $destinoprovincia;
+
+        return $this;
+    }
+
+    /**
+     * Get destinoprovincia
+     *
+     * @return string
+     */
+    public function getDestinoprovincia()
+    {
+        return $this->destinoprovincia;
+    }
+
+    /**
+     * Set destinodepartamento
+     *
+     * @param string $destinodepartamento
+     *
+     * @return ParadasIntermedias
+     */
+    public function setDestinodepartamento($destinodepartamento)
+    {
+        $this->destinodepartamento = $destinodepartamento;
+
+        return $this;
+    }
+
+    /**
+     * Get destinodepartamento
+     *
+     * @return string
+     */
+    public function getDestinodepartamento()
+    {
+        return $this->destinodepartamento;
+    }
+
+    /**
+     * Set destinolocalidad
+     *
+     * @param string $destinolocalidad
+     *
+     * @return ParadasIntermedias
+     */
+    public function setDestinolocalidad($destinolocalidad)
+    {
+        $this->destinolocalidad = $destinolocalidad;
+
+        return $this;
+    }
+
+    /**
+     * Get destinolocalidad
+     *
+     * @return string
+     */
+    public function getDestinolocalidad()
+    {
+        return $this->destinolocalidad;
+    }
+
+    /**
+     * Set destinodireccion
+     *
+     * @param string $destinodireccion
+     *
+     * @return ParadasIntermedias
+     */
+    public function setDestinodireccion($destinodireccion)
+    {
+        $this->destinodireccion = $destinodireccion;
+
+        return $this;
+    }
+
+    /**
+     * Get destinodireccion
+     *
+     * @return string
+     */
+    public function getDestinodireccion()
+    {
+        return $this->destinodireccion;
+    }
+
+    /**
+     * Set origenpais
+     *
+     * @param \FormularioBundle\Entity\Referenciales\Pais $origenpais
+     *
+     * @return ParadasIntermedias
+     */
+    public function setOrigenpais(\FormularioBundle\Entity\Referenciales\Pais $origenpais = null)
+    {
+        $this->origenpais = $origenpais;
+
+        return $this;
+    }
+
+    /**
+     * Get origenpais
+     *
+     * @return \FormularioBundle\Entity\Referenciales\Pais
+     */
+    public function getOrigenpais()
+    {
+        return $this->origenpais;
+    }
+
+    /**
+     * Set destinopais
+     *
+     * @param \FormularioBundle\Entity\Referenciales\Pais $destinopais
+     *
+     * @return ParadasIntermedias
+     */
+    public function setDestinopais(\FormularioBundle\Entity\Referenciales\Pais $destinopais = null)
+    {
+        $this->destinopais = $destinopais;
+
+        return $this;
+    }
+
+    /**
+     * Get destinopais
+     *
+     * @return \FormularioBundle\Entity\Referenciales\Pais
+     */
+    public function getDestinopais()
+    {
+        return $this->destinopais;
+    }
+}
